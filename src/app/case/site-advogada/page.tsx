@@ -4,47 +4,47 @@ import { BackLink } from '../back-link';
 
 export const metadata: Metadata = {
   title: 'Case Study: Site Advogada | Guilherme Bertolo',
-  description: 'Site profissional para advogada de Direito de Familia. SEO local, design responsivo, formulario de contato.',
+  description: 'Site profissional para advogada de Direito de Família. SEO local, design responsivo, formulário de contato.',
 };
 
 const STACK = [
   { name: 'Next.js 16', role: 'Framework' },
   { name: 'TypeScript', role: 'Linguagem' },
-  { name: 'Tailwind CSS v4', role: 'Estilizacao' },
+  { name: 'Tailwind CSS v4', role: 'Estilização' },
   { name: 'Vercel', role: 'Deploy' },
   { name: 'Supabase', role: 'Backend + Auth' },
-  { name: 'SEO Local', role: 'Estrategia' },
+  { name: 'SEO Local', role: 'Estratégia' },
   { name: 'JSON-LD', role: 'Dados estruturados' },
 ];
 
 const FEATURES = [
   {
     title: 'SEO local otimizado',
-    description: 'JSON-LD com LocalBusiness + LegalService, meta tags por pagina, sitemap dinamico. Posicionamento para buscas como "advogada familia Sao Bernardo".',
+    description: 'JSON-LD com LocalBusiness + LegalService, meta tags por página, sitemap dinâmico. Posicionamento para buscas como "advogada família São Bernardo".',
   },
   {
-    title: 'Areas de atuacao',
-    description: 'Paginas dedicadas para cada area: divorcio, guarda, pensao, inventario, uniao estavel. Conteudo pensado pra quem busca ajuda, nao juridiques.',
+    title: 'Áreas de atuação',
+    description: 'Páginas dedicadas para cada área: divórcio, guarda, pensão, inventário, união estável. Conteúdo pensado pra quem busca ajuda, não juridiquês.',
   },
   {
-    title: 'Formulario de contato',
-    description: 'Formulario simples e direto com validacao. Integrado com WhatsApp como canal principal de atendimento.',
+    title: 'Formulário de contato',
+    description: 'Formulário simples e direto com validação. Integrado com WhatsApp como canal principal de atendimento.',
   },
   {
     title: 'Design responsivo',
-    description: 'Layout limpo, profissional, tipografia legivel. Funciona bem em celular porque a maioria dos clientes acessa por la.',
+    description: 'Layout limpo, profissional, tipografia legível. Funciona bem em celular porque a maioria dos clientes acessa por lá.',
   },
   {
     title: 'Blog integrado',
-    description: 'Secao de artigos sobre duvidas comuns de Direito de Familia. Conteudo como ferramenta de captacao organica.',
+    description: 'Seção de artigos sobre dúvidas comuns de Direito de Família. Conteúdo como ferramenta de captação orgânica.',
   },
   {
     title: 'Painel administrativo',
-    description: 'Area restrita pra advogada gerenciar artigos do blog, depoimentos e conteudo do site sem depender de desenvolvedor.',
+    description: 'Área restrita pra advogada gerenciar artigos do blog, depoimentos e conteúdo do site sem depender de desenvolvedor.',
   },
   {
     title: 'Performance',
-    description: 'Lighthouse alto em todas as categorias. Carregamento rapido, sem dependencias pesadas, imagens otimizadas.',
+    description: 'Lighthouse alto em todas as categorias. Carregamento rápido, sem dependências pesadas, imagens otimizadas.',
   },
 ];
 
@@ -75,11 +75,11 @@ export default function SiteAdvogadaCase() {
         </h1>
 
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--c-accent)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
-          Presenca profissional pra quem vive de confianca.
+          Presença profissional pra quem vive de confiança.
         </p>
 
         <p style={{ color: 'var(--c-text-secondary)', fontSize: '1.1rem', lineHeight: 1.7, maxWidth: '650px' }}>
-          Uma advogada de Direito de Familia em Sao Bernardo do Campo precisava sair do boca a boca e aparecer no Google. Sem site, sem presenca digital, sem forma de receber contatos fora do horario. Construi o site do zero focando no que traz cliente: SEO local, conteudo claro e um caminho simples ate o WhatsApp.
+          Uma advogada de Direito de Família em São Bernardo do Campo precisava sair do boca a boca e aparecer no Google. Sem site, sem presença digital, sem forma de receber contatos fora do horário. Construí o site do zero focando no que traz cliente: SEO local, conteúdo claro e um caminho simples até o WhatsApp.
         </p>
 
         <div style={{ marginTop: '2rem' }}>
@@ -101,7 +101,7 @@ export default function SiteAdvogadaCase() {
         </h2>
         <div style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '16px', padding: '2rem' }}>
           <p style={{ color: 'var(--c-text-secondary)', lineHeight: 1.8 }}>
-            Advogados de familia dependem de indicacao. Mas quando alguem pesquisa &quot;advogada divorcio Sao Bernardo&quot; no Google, precisa encontrar. A Dra. Gislaine nao tinha site, nao aparecia em buscas e perdia clientes que procuravam online. O desafio era criar uma presenca digital que passasse credibilidade, explicasse as areas de atuacao sem juridiques e levasse o visitante ao contato com o minimo de atrito.
+            Advogados de família dependem de indicação. Mas quando alguém pesquisa &quot;advogada divórcio São Bernardo&quot; no Google, precisa encontrar. A Dra. Gislaine não tinha site, não aparecia em buscas e perdia clientes que procuravam online. O desafio era criar uma presença digital que passasse credibilidade, explicasse as áreas de atuação sem juridiquês e levasse o visitante ao contato com o mínimo de atrito.
           </p>
         </div>
       </section>
@@ -139,7 +139,7 @@ export default function SiteAdvogadaCase() {
       {/* CTA */}
       <section style={{ maxWidth: '900px', margin: '0 auto', padding: '0 1.5rem 6rem', textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <p style={{ color: 'var(--c-text-secondary)', marginBottom: '1.5rem' }}>
-          Precisa de um site profissional pro seu negocio?
+          Precisa de um site profissional pro seu negócio?
         </p>
         <Link
           href="/#contato"

@@ -23,7 +23,7 @@ const KNOWLEDGE: Record<string, string> = {
   'formação|faculdade|estudo': 'Cursei Engenharia da Computação na UNIP. Não concluí, mas isso nunca me impediu. Sou autodidata e aprendo mais rápido na prática do que em sala de aula.',
 
   // Carreira
-  'experiência|trabalho|carreira': 'Comecei com Help Desk na Accestage (2013), passei por Engenharia Industrial na Toledo do Brasil, Análise de TI no Cultural Norte Americano, Processos no Grupo H.Olhos, e desde 2020 sou dev independente. Cada fase me deu uma visão diferente de como tech resolve problemas reais.',
+  'experiência|trabalho|carreira': 'Comecei com Help Desk na Accesstage (2013), passei por Engenharia Industrial na Toledo do Brasil, Análise de TI no Cultural Norte Americano, Processos no Grupo H.Olhos, e desde 2020 sou dev independente. Cada fase me deu uma visão diferente de como tech resolve problemas reais.',
   'holhos|hospital|processos': 'Trabalhei no Grupo H.Olhos (segmento hospitalar) como Analista de Processos de 2018 a 2019. Implantava ferramentas, suporte a sistemas internos e projetos de melhoria.',
   'nft|web3|cripto|aposta': 'Depois do H.Olhos em 2019, explorei NFTs, Web3 e apostas esportivas. Cada experiência me ensinou algo. Agora estou 100% focado em IA e desenvolvimento de software.',
 
@@ -34,7 +34,7 @@ const KNOWLEDGE: Record<string, string> = {
 
   // Tech
   'tecnologia|stack|linguagem|ferramenta': 'Minha stack: TypeScript, Next.js, React e Tailwind no frontend. Supabase e Node.js no backend. Tauri e Rust pra desktop. Em IA, uso Claude Code diariamente e construo sistemas multi-agente. Deploy na Vercel.',
-  'ia|inteligência artificial|claude|gpt': 'IA é minha paixão atual. Uso Claude Code como ferramenta principal de desenvolvimento. Estou construindo o AIOX, um framework que orquestra 30+ agentes de IA trabalhando juntos.',
+  'ia|inteligência artificial|claude|gpt': 'IA é minha paixão atual. Uso Claude Code como ferramenta principal de desenvolvimento. Contribuo no AIOX, um framework que orquestra 30+ agentes de IA trabalhando juntos.',
 
   // Contato
   'contato|email|contratar|freelance': 'Pode me contatar pelo email guilhermerbertolo@gmail.com ou pelo GitHub github.com/guibertolo. Estou sempre aberto a projetos desafiadores!',
@@ -66,7 +66,7 @@ function findAnswer(question: string): string {
 
   // Sobre ele / fale sobre / quem é / me conta
   if (q.includes('sobre ele') || q.includes('sobre o guilherme') || q.includes('quem e ele') || q.includes('quem e o guilherme') || q.includes('me fale') || q.includes('me conta') || q.includes('fale sobre') || q.includes('conta sobre') || (q.includes('quem') && q.includes('voce'))) {
-    return 'O Guilherme é um AI Engineer e desenvolvedor full-stack de São Bernardo do Campo, SP. Extrovertido e direto ao ponto, quando decide fazer algo, é pra ontem. Tem mais de 10 anos em tech, passou por help desk, engenharia industrial, análise de TI e processos. Hoje constrói SaaS (FrotaViva), frameworks de IA (AIOX) e apps desktop (PurgeKit). É autodidata, apaixonado por IA e adora explorar novas fronteiras tecnológicas.';
+    return 'O Guilherme é um AI Engineer e desenvolvedor full-stack de São Bernardo do Campo, SP. Extrovertido e direto ao ponto, quando decide fazer algo, é pra ontem. Tem mais de 10 anos em tech, passou por help desk, engenharia industrial, análise de TI e processos. Hoje constrói SaaS (FrotaViva), contribui no AIOX (framework de orquestração de IA) e faz apps desktop (PurgeKit). É autodidata, apaixonado por IA e adora explorar novas fronteiras tecnológicas.';
   }
 
   // Busca por keywords no knowledge base
@@ -77,7 +77,7 @@ function findAnswer(question: string): string {
 
   // O que faz / trabalha com
   if (q.includes('o que faz') || q.includes('o que ele faz') || q.includes('trabalha com')) {
-    return 'O Guilherme é AI Engineer e desenvolvedor full-stack. Constrói aplicações web com Next.js e TypeScript, apps desktop com Rust e Tauri, e frameworks de orquestração de IA. Atualmente focado em multi-agent systems com o AIOX.';
+    return 'O Guilherme é AI Engineer e desenvolvedor full-stack. Constrói aplicações web com Next.js e TypeScript, apps desktop com Rust e Tauri, e contribui em frameworks de orquestração de IA. Atualmente focado em multi-agent systems com o AIOX.';
   }
 
   // Pode / consegue / sabe
@@ -91,7 +91,7 @@ function findAnswer(question: string): string {
 
 export default function ChatAI({ onClose }: { onClose: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', text: 'Olá! Sou o assistente do Guilherme. Pergunte qualquer coisa sobre minha experiência, projetos ou habilidades!' },
+    { role: 'assistant', text: 'Olá! Sou o assistente do Guilherme. Pergunte qualquer coisa sobre a experiência dele, projetos ou habilidades!' },
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);

@@ -6,10 +6,10 @@ import { BackLink } from '../back-link';
 const SCREENSHOTS = [
   { src: '/cases/frotaviva/dashboard-1.png', label: 'Dashboard - Resultado da Frota' },
   { src: '/cases/frotaviva/dashboard-2.png', label: 'Dashboard - Indicadores e Ranking' },
-  { src: '/cases/frotaviva/viagens.png', label: 'Gestao de Viagens' },
+  { src: '/cases/frotaviva/viagens.png', label: 'Gestão de Viagens' },
   { src: '/cases/frotaviva/viagem-detalhe.png', label: 'Detalhe da Viagem' },
   { src: '/cases/frotaviva/acerto-contas.png', label: 'Acerto de Contas' },
-  { src: '/cases/frotaviva/vinculos.png', label: 'Vinculos da Frota' },
+  { src: '/cases/frotaviva/vinculos.png', label: 'Vínculos da Frota' },
 ];
 
 const FEATURES = [

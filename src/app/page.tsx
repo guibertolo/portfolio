@@ -6,7 +6,7 @@ import FeatureToggles from './feature-toggles';
 const PROJECTS = [
   {
     title: 'FrotaViva',
-    description: 'Cegonheiros gerenciavam frotas inteiras no Excel e WhatsApp. Construi sozinho o SaaS que substituiu tudo isso: dashboard em tempo real, controle total da operação, Lighthouse 98. Em produção.',
+    description: 'Cegonheiros gerenciavam frotas inteiras no Excel e WhatsApp. Construí sozinho o SaaS que substituiu tudo isso: dashboard em tempo real, controle total da operação, Lighthouse 98. Em produção.',
     tags: ['Next.js', 'Supabase', 'Vercel', 'TypeScript'],
     status: 'Live',
     highlight: 'Lighthouse 98',
@@ -52,7 +52,7 @@ const TECH_STACK = [
 ];
 
 const EXPERIENCE = [
-  { period: '2020 - Presente', role: 'Desenvolvedor Independente & AI Engineer', company: 'Autônomo', url: '', description: 'Transição para desenvolvimento full-stack e engenharia de IA. Construção de SaaS em produção (FrotaViva), framework de orquestração de agentes (AIOX) e aplicações desktop com Rust e Tauri.' },
+  { period: '2020 - Presente', role: 'Desenvolvedor Independente & AI Engineer', company: 'Autônomo', url: '', description: 'Transição para desenvolvimento full-stack e engenharia de IA. Construção de SaaS em produção (FrotaViva), contribuição no AIOX (framework de orquestração de agentes) e aplicações desktop com Rust e Tauri.' },
   { period: '2018 - 2019', role: 'Analista de Processos', company: 'Grupo H.Olhos', url: 'https://hospitalholhos.com.br', description: 'Implantação e manutenção de ferramentas e softwares. Integração de novos colaboradores, gestão de rede, suporte de sistemas internos e desenvolvimento de projetos.' },
   { period: '2016 - 2018', role: 'Analista de TI', company: 'Cultural Norte Americano', url: 'https://cna.com.br', description: 'Planejamento e configuração de toda rede interna. Gestão de infraestrutura de TI e suporte técnico.' },
   { period: '2014 - 2016', role: 'Estagiário de Engenharia Industrial', company: 'Toledo do Brasil', url: 'https://www.toledobrasil.com.br', description: 'Configuração e montagem de sistemas de pesagem. Migração de banco de dados, montagem de ambientes de teste.' },
@@ -179,13 +179,13 @@ export default function Home() {
           {/* Claim específico */}
           <div style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderLeft: '3px solid var(--c-accent)', borderRadius: '0 12px 12px 0', padding: '1.25rem 1.5rem', marginBottom: '1.5rem' }}>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.6 }}>
-              Construí o FrotaViva sozinho: SaaS em produção com nota 98/100 em performance. Criei o AIOX, framework que coordena 30+ agentes de IA em um pipeline de 29 etapas.
+              Construí o FrotaViva sozinho: SaaS em produção com nota 98/100 em performance. Contribuo no AIOX, framework que coordena 30+ agentes de IA em um pipeline de 29 etapas.
             </p>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--c-text)', lineHeight: 1.8, fontSize: '1rem', fontFamily: 'var(--font-sans)' }}>
             <p>Comecei no suporte técnico, passei por engenharia industrial e gestão de processos hospitalares. Cada fase me ensinou a enxergar tecnologia pelo lado de quem usa, não de quem vende. Hoje projeto e desenvolvo produtos inteiros, do banco de dados à interface.</p>
-            <p>No FrotaViva, fiz tudo: modelagem do banco, backend, frontend, deploy. Sem equipe, sem dependência. No AIOX, automatizei meu próprio fluxo de desenvolvimento: agentes de IA que pesquisam, codificam, testam e fazem deploy seguindo 29 etapas com 7 portões de qualidade.</p>
+            <p>No FrotaViva, fiz tudo: modelagem do banco, backend, frontend, deploy. Sem equipe, sem dependência. No AIOX, contribuo com o framework que orquestra agentes de IA que pesquisam, codificam, testam e fazem deploy seguindo 29 etapas com 7 portões de qualidade.</p>
           </div>
           </div>
         </div>

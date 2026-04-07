@@ -36,7 +36,7 @@ const COMMANDS: Record<string, string> = {
 > 2018-2019      Analista de Processos -Grupo H.Olhos
 > 2016-2018      Analista de TI -Cultural Norte Americano
 > 2014-2016      Estagiário Eng. Industrial -Toledo do Brasil
-> 2013-2014      Estagiário Help Desk -Accestage Tecnologia`,
+> 2013-2014      Estagiário Help Desk -Accesstage Tecnologia`,
 
   contact: `> Email:   guilhermerbertolo@gmail.com
 > GitHub:  github.com/guibertolo
