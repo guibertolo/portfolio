@@ -822,26 +822,14 @@ button:hover {
   width: 0.3em;
 }
 
-.split-reveal.split-active .split-char {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Gradient text inside split needs to preserve gradient per word */
-.split-reveal .gradient-text-split {
+/* Gradient text inside split — apply gradient per char since inline-block breaks parent background-clip */
+.split-reveal .gradient-text-split .split-char {
   background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-gradient-mid, #a855f7) 50%, var(--c-accent-hover) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: gradientShift 4s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .split-reveal .split-char {
-    transition-duration: 0.01s;
-    transform: none;
-  }
 }
 
 /* ============================================

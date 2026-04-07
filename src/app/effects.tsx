@@ -296,6 +296,27 @@ export default function Effects() {
     const isRevisit = sessionStorage.getItem('portfolio-visited') === '1';
     sessionStorage.setItem('portfolio-visited', '1');
 
+    // JS-driven split animation — triggered by scroll handler, no observers
+    const animateSplitChars = (titleEl: HTMLElement) => {
+      if (titleEl.dataset.splitAnimated === '1') return;
+      titleEl.dataset.splitAnimated = '1';
+      const chars = titleEl.querySelectorAll<HTMLElement>('.split-char');
+      const count = chars.length;
+      // Normalize: all titles animate in ~500ms regardless of char count
+      const perChar = count > 0 ? Math.max(8, Math.min(35, 500 / count)) : 20;
+      chars.forEach((char, i) => {
+        setTimeout(() => {
+          char.style.opacity = '1';
+          char.style.transform = 'translateY(0)';
+        }, i * perChar);
+      });
+    };
+
+    // No observer needed — scroll handler checks visibility directly
+    const activateSplitsInReveal = (_revealEl: HTMLElement) => {
+      // noop — scroll handler handles everything
+    };
+
     const showObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -312,6 +333,8 @@ export default function Effects() {
               if (delay) el.style.transitionDelay = `${delay}s`;
               el.classList.add('revealed');
             }
+            // Directly activate split titles inside this revealed element
+            activateSplitsInReveal(el);
           }
         });
       },
@@ -342,6 +365,7 @@ export default function Effects() {
           const delay = htmlEl.dataset.delay;
           if (delay) htmlEl.style.transitionDelay = `${delay}s`;
           el.classList.add('revealed');
+          activateSplitsInReveal(htmlEl);
         }
       });
     });
@@ -466,21 +490,34 @@ export default function Effects() {
       const processNode = (node: Node): Node[] => {
         if (node.nodeType === Node.TEXT_NODE) {
           const text = node.textContent ?? '';
-          const spans: Node[] = [];
-          for (const char of text) {
-            const span = document.createElement('span');
-            if (char === ' ') {
+          const result: Node[] = [];
+          // Split by spaces to group chars by word (prevents mid-word line breaks)
+          const words = text.split(/( )/);
+          for (const segment of words) {
+            if (segment === ' ') {
+              const span = document.createElement('span');
               span.className = 'split-char split-char-space';
               span.innerHTML = '&nbsp;';
-            } else {
-              span.className = 'split-char';
-              span.textContent = char;
+              span.style.transitionDelay = `${charIndex * 20}ms`;
+              charIndex++;
+              result.push(span);
+            } else if (segment.length > 0) {
+              // Wrap word chars in a nowrap container to prevent mid-word breaks
+              const wordWrap = document.createElement('span');
+              wordWrap.style.whiteSpace = 'nowrap';
+              wordWrap.style.display = 'inline';
+              for (const char of segment) {
+                const span = document.createElement('span');
+                span.className = 'split-char';
+                span.textContent = char;
+                span.style.transitionDelay = `${charIndex * 20}ms`;
+                charIndex++;
+                wordWrap.appendChild(span);
+              }
+              result.push(wordWrap);
             }
-            span.style.transitionDelay = `${charIndex * 30}ms`;
-            charIndex++;
-            spans.push(span);
           }
-          return spans;
+          return result;
         } else if (node.nodeType === Node.ELEMENT_NODE) {
           const el = node as HTMLElement;
           // Preserve gradient-text spans — wrap their text content too
@@ -509,19 +546,19 @@ export default function Effects() {
       title.classList.add('split-reveal');
     });
 
-    // Observer to trigger split animation when section titles enter viewport
-    const splitObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).classList.add('split-active');
-            splitObserver.unobserve(entry.target);
+    // Split activation handled by scroll handler — no observers needed
+    // Also trigger for titles already in viewport at load
+    requestAnimationFrame(() => {
+      sectionTitles.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.7 && rect.bottom > 0) {
+          const parentReveal = el.closest('.reveal');
+          if (!parentReveal || parentReveal.classList.contains('revealed')) {
+            animateSplitChars(el);
           }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    document.querySelectorAll('.split-reveal').forEach((el) => splitObserver.observe(el));
+        }
+      });
+    });
 
     // ===== MULTI-LAYER PARALLAX + CONTINUOUS SCROLL EFFECTS =====
     const parallaxEls = document.querySelectorAll<HTMLElement>('[data-parallax]');
@@ -546,12 +583,20 @@ export default function Effects() {
         el.style.transform = `translateY(${scrollY * speed}px)`;
       });
 
-      // Section titles subtle horizontal shift based on scroll
+      // Section titles subtle horizontal shift + split text activation
       sectionTitles.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
         const shift = (progress - 0.5) * 10;
         el.style.transform = `translateX(${shift}px)`;
+
+        // Activate split text when title is 70% up from bottom of viewport
+        if (rect.top < window.innerHeight * 0.7 && rect.bottom > 0) {
+          const parentReveal = el.closest('.reveal');
+          if (!parentReveal || parentReveal.classList.contains('revealed')) {
+            animateSplitChars(el);
+          }
+        }
       });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -813,7 +858,7 @@ export default function Effects() {
     // ===== CLEANUP =====
     return () => {
       showObserver.disconnect();
-      splitObserver.disconnect();
+      // split activation via scroll handler — no observer to disconnect
       // hideObserver removed — reveal stays permanent
       magneticHandlers.forEach(({ move, leave }, card) => {
         card.removeEventListener('mousemove', move);
