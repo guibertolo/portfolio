@@ -296,19 +296,12 @@ export default function Effects() {
     const isRevisit = sessionStorage.getItem('portfolio-visited') === '1';
     sessionStorage.setItem('portfolio-visited', '1');
 
-    // On revisit (back button): instantly show everything, no animations
+    // On revisit (back button): fast animations (2x speed, less stagger)
     if (isRevisit) {
       document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => {
-        el.style.transition = 'none';
+        el.style.transitionDuration = '0.25s';
+        el.style.transitionDelay = '0s';
         el.classList.add('revealed');
-      });
-      document.querySelectorAll<HTMLElement>('.split-reveal').forEach((el) => {
-        el.querySelectorAll<HTMLElement>('.split-char').forEach((char) => {
-          char.style.opacity = '1';
-          char.style.transform = 'translateY(0)';
-          char.style.transition = 'none';
-        });
-        el.dataset.splitAnimated = '1';
       });
     }
 
