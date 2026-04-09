@@ -1,17 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Suspense, useState, useEffect, useCallback } from 'react';
+import { Suspense, useState, useEffect, useCallback, useRef } from 'react';
 
-const ShaderGradientCanvas = dynamic(
-  () => import('shadergradient').then((m) => ({ default: m.ShaderGradientCanvas })),
-  { ssr: false }
-);
-
-const ShaderGradient = dynamic(
-  () => import('shadergradient').then((m) => ({ default: m.ShaderGradient })),
-  { ssr: false }
-);
+const WaterShader = dynamic(() => import('./water-shader'), { ssr: false });
 
 // Cores do shader por periodo do dia (acompanha o tema do site)
 const THEME_COLORS: Record<string, { color1: string; color2: string; color3: string }> = {
@@ -32,6 +24,7 @@ function getThemeLabel(): string {
 }
 
 export default function ShaderBackground() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [ready, setReady] = useState(false);
   const [colors, setColors] = useState(THEME_COLORS[getThemeLabel()]);
@@ -41,23 +34,24 @@ export default function ShaderBackground() {
   }, []);
 
   useEffect(() => {
-    const container = document.querySelector('[data-shader-bg]') as HTMLElement | null;
     // Espera o letter reveal terminar antes de montar o WebGL
     const mountTimer = setTimeout(() => setMounted(true), 800);
     const timer = setTimeout(() => setReady(true), 1500);
 
     // Esconde o shader quando a aba sai de foco e mostra suave ao voltar
     const hideShader = () => {
-      if (!container) return;
-      container.style.opacity = '0';
-      container.style.transition = 'none';
+      const el = containerRef.current;
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transition = 'none';
     };
     const showShader = () => {
-      if (!container) return;
+      const el = containerRef.current;
+      if (!el) return;
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          container.style.transition = 'opacity 1s ease';
-          container.style.opacity = '0.6';
+          el.style.transition = 'opacity 1s ease';
+          el.style.opacity = '0.6';
         });
       });
     };
@@ -68,19 +62,15 @@ export default function ShaderBackground() {
     window.addEventListener('blur', handleBlur);
     window.addEventListener('focus', handleFocus);
 
-    // Mover shader junto com scroll (parallax lento)
+    // Dispatch scroll to shader — mesh moves internally to show different terrain
     const handleScroll = () => {
-      if (!container) return;
-      const scrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? scrollY / docHeight : 0;
-      container.style.transform = `translateY(${-progress * 100}vh)`;
+      window.dispatchEvent(new CustomEvent('shader-scroll', { detail: window.scrollY }));
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Atualiza cores quando o tema muda
     updateColors();
-    const interval = setInterval(updateColors, 300000); // a cada 5 min
+    const interval = setInterval(updateColors, 300000);
 
     // Escuta mudanca forcada de tema (preview no feature toggles)
     const handleForceTheme = (e: Event) => {
@@ -108,42 +98,26 @@ export default function ShaderBackground() {
 
   return (
     <div
+      ref={containerRef}
       data-shader-bg
       style={{
         position: 'fixed',
         left: 0,
         top: 0,
-        zIndex: -2,
+        zIndex: 0,
         width: '100vw',
-        height: '200vh',
+        height: '100vh',
         pointerEvents: 'none',
         opacity: ready ? 0.6 : 0,
         transition: 'opacity 2s ease',
       }}
     >
       {mounted && <Suspense fallback={null}>
-        <ShaderGradientCanvas
-          style={{ width: '100%', height: '100%' }}
-          pixelDensity={0.5}
-          fov={45}
-        >
-          <ShaderGradient
-            type="waterPlane"
-            animate="on"
-            uTime={0.2}
-            uSpeed={0.03}
-            uStrength={3}
-            uDensity={2}
-            uFrequency={4}
-            cAzimuthAngle={0}
-            cPolarAngle={75}
-            cDistance={1.8}
-            color1={colors.color1}
-            color2="#1a6a8a"
-            color3={colors.color3}
-            grain="off"
-          />
-        </ShaderGradientCanvas>
+        <WaterShader
+          color1={colors.color1}
+          color2="#1a6a8a"
+          color3={colors.color3}
+        />
       </Suspense>}
     </div>
   );
