@@ -68,6 +68,16 @@ export default function ShaderBackground() {
     window.addEventListener('blur', handleBlur);
     window.addEventListener('focus', handleFocus);
 
+    // Mover shader junto com scroll (parallax lento)
+    const handleScroll = () => {
+      if (!container) return;
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollY / docHeight : 0;
+      container.style.transform = `translateY(${-progress * 100}vh)`;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     // Atualiza cores quando o tema muda
     updateColors();
     const interval = setInterval(updateColors, 300000); // a cada 5 min
@@ -91,6 +101,7 @@ export default function ShaderBackground() {
       document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('blur', handleBlur);
       window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('force-theme', handleForceTheme);
     };
   }, [updateColors]);
@@ -100,10 +111,11 @@ export default function ShaderBackground() {
       data-shader-bg
       style={{
         position: 'fixed',
-        inset: 0,
+        left: 0,
+        top: 0,
         zIndex: -2,
         width: '100vw',
-        height: '100vh',
+        height: '200vh',
         pointerEvents: 'none',
         opacity: ready ? 0.6 : 0,
         transition: 'opacity 2s ease',
@@ -120,14 +132,14 @@ export default function ShaderBackground() {
             animate="on"
             uTime={0.2}
             uSpeed={0.03}
-            uStrength={2.5}
-            uDensity={1.5}
-            uFrequency={3}
-            cAzimuthAngle={180}
-            cPolarAngle={80}
-            cDistance={2.5}
+            uStrength={3}
+            uDensity={2}
+            uFrequency={4}
+            cAzimuthAngle={0}
+            cPolarAngle={75}
+            cDistance={1.8}
             color1={colors.color1}
-            color2={colors.color2}
+            color2="#1a6a8a"
             color3={colors.color3}
             grain="off"
           />
