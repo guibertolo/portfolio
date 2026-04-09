@@ -11,7 +11,7 @@ const THEME_COLORS: Record<string, { color1: string; color2: string; color3: str
   'manhã':   { color1: '#001a1f', color2: '#0e4a5c', color3: '#080a0d' },
   tarde:     { color1: '#0f172a', color2: '#1e3a5f', color3: '#0a0a0a' },
   entardecer:{ color1: '#1a0a20', color2: '#4a1e5c', color3: '#0a080d' },
-  noite:     { color1: '#0a0c1a', color2: '#1e2050', color3: '#060810' },
+  noite:     { color1: '#0a0820', color2: '#2a1a6a', color3: '#080412' },
 };
 
 function getThemeLabel(): string {
@@ -115,7 +115,7 @@ export default function ShaderBackground() {
       {mounted && <Suspense fallback={null}>
         <WaterShader
           color1={colors.color1}
-          color2="#1a6a8a"
+          color2={colors.color2}
           color3={colors.color3}
         />
       </Suspense>}
