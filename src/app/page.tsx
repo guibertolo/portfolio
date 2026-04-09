@@ -137,6 +137,10 @@ export default function Home() {
             <span style={{ color: 'var(--c-text)', fontWeight: 500 }}>Sozinho, se precisar.</span>
           </p>
 
+          <p className="hero-fade hero-fade-3" style={{ color: 'var(--c-text-muted)', fontSize: '0.8rem', marginTop: '0.75rem', letterSpacing: '0.08em', fontFamily: 'var(--font-mono)' }}>
+            Sites &middot; Sistemas &middot; Apps &middot; Automacao com IA
+          </p>
+
           <div className="hero-fade hero-fade-4 hero-cta-group" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
             <a href="#contato" className="btn-outline" style={{ padding: '0.625rem 1.5rem', border: '1px solid var(--c-border)', color: 'var(--c-text-secondary)', borderRadius: 'var(--radius-full)', textDecoration: 'none', fontWeight: 500, fontSize: '0.8rem' }}>
               Contato
