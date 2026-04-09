@@ -186,7 +186,7 @@ function WaterPlane({ color1, color2, color3, mouseRef }: WaterPlaneProps) {
     // Move mesh physically through camera view based on scroll
     // Factor: 0.0015 units per pixel — matches content scroll speed visually
     const scrollTarget = scrollRef.current * 0.0015;
-    smoothScroll.current += (scrollTarget - smoothScroll.current) * Math.min(1, delta * 8);
+    smoothScroll.current += (scrollTarget - smoothScroll.current) * Math.min(1, delta * 20);
     if (meshRef.current) {
       meshRef.current.position.z = -smoothScroll.current;
     }

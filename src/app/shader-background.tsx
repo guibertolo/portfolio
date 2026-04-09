@@ -35,8 +35,8 @@ export default function ShaderBackground() {
 
   useEffect(() => {
     // Espera o letter reveal terminar antes de montar o WebGL
-    const mountTimer = setTimeout(() => setMounted(true), 800);
-    const timer = setTimeout(() => setReady(true), 1500);
+    const mountTimer = setTimeout(() => setMounted(true), 100);
+    const timer = setTimeout(() => setReady(true), 300);
 
     // Esconde o shader quando a aba sai de foco e mostra suave ao voltar
     const hideShader = () => {

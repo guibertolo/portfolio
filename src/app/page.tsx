@@ -138,7 +138,7 @@ export default function Home() {
           </p>
 
           <p className="hero-fade hero-fade-3" style={{ color: 'var(--c-text-muted)', fontSize: '0.8rem', marginTop: '0.75rem', letterSpacing: '0.08em', fontFamily: 'var(--font-mono)' }}>
-            Sites &middot; Sistemas &middot; Apps &middot; Automacao com IA
+            Sites &middot; Sistemas &middot; Apps &middot; Automa&ccedil;&atilde;o com IA
           </p>
 
           <div className="hero-fade hero-fade-4 hero-cta-group" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
