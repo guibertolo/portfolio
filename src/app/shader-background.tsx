@@ -56,11 +56,7 @@ export default function ShaderBackground() {
       });
     };
     const handleVisibility = () => { document.hidden ? hideShader() : showShader(); };
-    const handleBlur = () => hideShader();
-    const handleFocus = () => showShader();
     document.addEventListener('visibilitychange', handleVisibility);
-    window.addEventListener('blur', handleBlur);
-    window.addEventListener('focus', handleFocus);
 
     // Dispatch scroll to shader — mesh moves internally to show different terrain
     const handleScroll = () => {
@@ -89,8 +85,6 @@ export default function ShaderBackground() {
       clearTimeout(timer);
       clearInterval(interval);
       document.removeEventListener('visibilitychange', handleVisibility);
-      window.removeEventListener('blur', handleBlur);
-      window.removeEventListener('focus', handleFocus);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('force-theme', handleForceTheme);
     };

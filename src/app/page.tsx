@@ -132,8 +132,9 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="hero-fade hero-fade-3" style={{ color: 'var(--c-text-secondary)', fontSize: '1.05rem', maxWidth: '480px', margin: '2rem auto 0', lineHeight: 1.7 }}>
-            Eu projeto, codifico e coloco no ar. Sozinho, se precisar.
+          <p className="hero-fade hero-fade-3" style={{ color: 'var(--c-text-secondary)', fontSize: '1.1rem', maxWidth: '520px', margin: '2rem auto 0', lineHeight: 1.8, letterSpacing: '0.01em' }}>
+            Eu projeto, codifico e coloco no ar.{' '}
+            <span style={{ color: 'var(--c-text)', fontWeight: 500 }}>Sozinho, se precisar.</span>
           </p>
 
           <div className="hero-fade hero-fade-4 hero-cta-group" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
