@@ -57,7 +57,7 @@ export default function ShaderBackground() {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           container.style.transition = 'opacity 1s ease';
-          container.style.opacity = '0.4';
+          container.style.opacity = '0.6';
         });
       });
     };
@@ -105,7 +105,7 @@ export default function ShaderBackground() {
         width: '100vw',
         height: '100vh',
         pointerEvents: 'none',
-        opacity: ready ? 0.4 : 0,
+        opacity: ready ? 0.6 : 0,
         transition: 'opacity 2s ease',
       }}
     >
