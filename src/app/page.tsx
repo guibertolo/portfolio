@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Effects from './effects';
 import FeatureToggles from './feature-toggles';
+import SmoothScroll from './smooth-scroll';
+import ShaderBackground from './shader-background';
 // Loading screen removed per market review — speed to content matters
 
 const PROJECTS = [
@@ -102,11 +104,12 @@ export default function Home() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Background — ambient blobs + noise texture */}
-      <div className="bg-continuity" />
+      <ShaderBackground />
       <div className="bg-noise" />
 
       <Effects />
       <FeatureToggles />
+      <SmoothScroll />
 
       {/* ===== HERO ===== */}
       <section className="hero-section-mobile" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', maxWidth: '100%', padding: '0 1.25rem', position: 'relative' }}>

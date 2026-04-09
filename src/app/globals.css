@@ -184,8 +184,7 @@ section {
   display: inline-block;
   opacity: 0;
   transform: translateY(120%);
-  filter: blur(8px);
-  animation: letterReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: letterReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transition: text-shadow 0.3s ease, transform 0.2s ease;
   cursor: default;
 }
@@ -196,8 +195,7 @@ section {
 }
 
 @keyframes letterReveal {
-  40% { filter: blur(2px); }
-  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================
