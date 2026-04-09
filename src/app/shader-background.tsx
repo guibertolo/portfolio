@@ -66,7 +66,7 @@ export default function ShaderBackground() {
 
     // Atualiza cores quando o tema muda
     updateColors();
-    const interval = setInterval(updateColors, 300000);
+    const interval = setInterval(updateColors, 60000);
 
     // Escuta mudanca forcada de tema (preview no feature toggles)
     const handleForceTheme = (e: Event) => {

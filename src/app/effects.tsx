@@ -282,7 +282,7 @@ export default function Effects() {
         currentThemeLabel = newLabel;
         applyTheme(undefined, true);
       }
-    }, 300000); // 5 minutos
+    }, 60000); // 1 minuto
 
     // Listen for theme preview changes
     const handleForceTheme = (e: Event) => {
