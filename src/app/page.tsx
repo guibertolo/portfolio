@@ -123,7 +123,7 @@ export default function Home() {
             {''}
           </p>
 
-          <h1 aria-label="Guilherme Bertolo" data-parallax-speed="-0.05" style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.05, userSelect: 'none', WebkitUserSelect: 'none' }}>
+          <h1 id="hero-name" aria-label="Guilherme Bertolo" data-parallax-speed="-0.05" style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.05, userSelect: 'none', WebkitUserSelect: 'none' }}>
             <span aria-hidden="true" style={{ display: 'block', marginBottom: '0.25rem' }}>
               <LetterReveal text="Guilherme" baseDelay={0.8} />
             </span>

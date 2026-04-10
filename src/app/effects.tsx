@@ -787,7 +787,7 @@ export default function Effects() {
     };
 
     // ===== EASTER EGG — 5x click on hero name =====
-    const heroH1 = document.querySelector<HTMLElement>('h1');
+    const heroH1 = document.getElementById('hero-name');
     let heroClicks = 0;
     let heroClickTimer: ReturnType<typeof setTimeout> | undefined;
     let easterEggUsed = false;
