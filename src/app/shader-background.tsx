@@ -64,8 +64,7 @@ export default function ShaderBackground() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Atualiza cores quando o tema muda
-    updateColors();
+    // Atualiza cores quando a hora muda de faixa (initial state ja usa getThemeLabel)
     const interval = setInterval(updateColors, 60000);
 
     // Escuta mudanca forcada de tema (preview no feature toggles)
