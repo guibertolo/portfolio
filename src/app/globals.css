@@ -3,13 +3,15 @@
 @theme {
   --c-bg: var(--theme-bg, #0a0a0a);
   --c-bg-card: var(--theme-bg-card, rgba(255, 255, 255, 0.04));
-  --c-bg-card-hover: var(--theme-bg-card-hover, rgba(255, 255, 255, 0.08));
+  --c-bg-card-hover: var(--theme-bg-card-hover, rgba(255, 255, 255, 0.075));
+  --c-bg-card-featured: var(--theme-bg-card-featured, rgba(255, 255, 255, 0.055));
   --c-border: var(--theme-border, rgba(255, 255, 255, 0.08));
   --c-accent: var(--theme-accent, #3b82f6);
   --c-accent-hover: var(--theme-accent-hover, #60a5fa);
   --c-text: #fafafa;
   --c-text-secondary: #a1a1aa;
   --c-text-muted: #848490;
+  --c-text-quaternary: #5e6168;
   --c-gradient-mid: var(--theme-gradient-mid, #a855f7);
   --c-glow: var(--theme-glow, rgba(59, 130, 246, 0.12));
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -42,8 +44,18 @@ body {
   background: transparent;
   color: var(--c-text);
   font-family: var(--font-sans);
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
   overflow-x: hidden;
   width: 100%;
+}
+
+code, kbd, pre, samp, .label-mono, [style*="font-mono"] {
+  font-feature-settings: 'calt', 'liga';
+}
+
+.tnum {
+  font-feature-settings: 'tnum';
+  font-variant-numeric: tabular-nums;
 }
 
 /* Smooth theme transitions */
@@ -133,9 +145,10 @@ section {
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.035em;
   margin-bottom: 2rem;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 /* ============================================
@@ -212,16 +225,49 @@ section {
   border: 1px solid var(--c-border);
   border-radius: 16px;
   padding: 1.5rem;
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
 }
 
 .card-glass:hover {
   background: var(--c-bg-card-hover);
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.28);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+    0 20px 40px -24px rgba(59, 130, 246, 0.22);
 }
 
 .card-glass:not(.magnetic-card):hover {
   transform: translateY(-4px);
+}
+
+/* Featured card — static elevation step higher than siblings */
+.project-featured.card-glass {
+  background: var(--c-bg-card-featured);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.045),
+    0 24px 48px -28px rgba(59, 130, 246, 0.18);
+}
+
+.project-featured.card-glass:hover {
+  background: var(--c-bg-card-hover);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    0 28px 56px -24px rgba(59, 130, 246, 0.28);
+}
+
+/* Global accessible focus ring */
+*:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.floating-nav a:focus-visible,
+.btn-primary:focus-visible,
+.btn-outline:focus-visible,
+.contact-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--c-bg), 0 0 0 4px var(--c-accent);
 }
 
 /* Project card status bar */
@@ -234,35 +280,7 @@ section {
   border-radius: 16px 16px 0 0;
 }
 
-/* Bracket motif { } — decorative frame around hero */
-.bracket-motif {
-  font-family: var(--font-mono);
-  color: var(--c-accent);
-  opacity: 0.07;
-  font-size: clamp(8rem, 20vw, 16rem);
-  font-weight: 200;
-  position: absolute;
-  pointer-events: none;
-  line-height: 1;
-}
-
-.bracket-left {
-  left: -12rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.bracket-right {
-  right: -12rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-@media (max-width: 1400px) {
-  .bracket-motif { display: none; }
-}
-
-/* bracket hidden below 1400px via rule above */
+/* Bracket motif removed — dead code, not used in any page */
 
 /* Avatar duotone filter */
 .avatar-container {
@@ -562,46 +580,7 @@ section {
   50% { opacity: 0; }
 }
 
-/* ============================================
-   Hero particles (CSS only)
-   ============================================ */
-.hero-particles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: var(--c-accent);
-  border-radius: 50%;
-  opacity: 0;
-  animation: particleFloat 6s ease-in-out infinite;
-}
-
-.particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 8s; }
-.particle:nth-child(2) { left: 20%; top: 60%; animation-delay: 1s; animation-duration: 6s; }
-.particle:nth-child(3) { left: 35%; top: 40%; animation-delay: 2s; animation-duration: 7s; }
-.particle:nth-child(4) { left: 50%; top: 80%; animation-delay: 0.5s; animation-duration: 9s; }
-.particle:nth-child(5) { left: 65%; top: 30%; animation-delay: 1.5s; animation-duration: 6s; }
-.particle:nth-child(6) { left: 75%; top: 70%; animation-delay: 3s; animation-duration: 8s; }
-.particle:nth-child(7) { left: 85%; top: 15%; animation-delay: 2.5s; animation-duration: 7s; }
-.particle:nth-child(8) { left: 90%; top: 50%; animation-delay: 0.8s; animation-duration: 9s; }
-.particle:nth-child(9) { left: 40%; top: 10%; animation-delay: 3.5s; animation-duration: 6s; width: 3px; height: 3px; }
-.particle:nth-child(10) { left: 55%; top: 90%; animation-delay: 1.2s; animation-duration: 8s; }
-.particle:nth-child(11) { left: 15%; top: 85%; animation-delay: 4s; animation-duration: 7s; }
-.particle:nth-child(12) { left: 80%; top: 40%; animation-delay: 2.2s; animation-duration: 9s; width: 3px; height: 3px; }
-
-@keyframes particleFloat {
-  0% { opacity: 0; transform: translateY(0) scale(1); }
-  20% { opacity: 0.6; }
-  50% { opacity: 0.3; transform: translateY(-80px) scale(1.5); }
-  80% { opacity: 0.5; }
-  100% { opacity: 0; transform: translateY(-160px) scale(0.5); }
-}
+/* Hero particles removed — dead code, not rendered in any page */
 
 /* ============================================
    Responsive mobile
@@ -756,32 +735,28 @@ button:hover {
   50% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
 }
 
-/* Border shimmer nos cards ao hover */
+/* Border shimmer — acionado apenas no hover, sem loop contínuo */
 .card-glass::before {
   content: '';
   position: absolute;
   inset: 0px;
   border-radius: 16px;
   background: linear-gradient(135deg, transparent 30%, var(--c-accent) 50%, transparent 70%);
-  background-size: 300% 300%;
-  animation: borderShimmer 6s linear infinite;
+  background-size: 200% 200%;
+  background-position: 100% 100%;
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.5s;
-}
-
-@keyframes borderShimmer {
-  0% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
+  transition: opacity 0.5s ease, background-position 1.2s ease;
 }
 
 .card-glass:hover::before {
-  opacity: 0.4;
+  opacity: 0.35;
+  background-position: 0% 0%;
 }
 
-/* Grid lines drifting — mais visível */
+/* Grid lines drifting — slow, perceptível só a quem fica parado */
 .hero-grid {
-  animation: gridDrift 15s linear infinite;
+  animation: gridDrift 60s linear infinite;
 }
 
 @keyframes gridDrift {
@@ -789,16 +764,9 @@ button:hover {
   100% { background-position: 60px 60px; }
 }
 
-/* Gradient text shimmer contínuo */
+/* Gradient text estático — sem shimmer infinito */
 .gradient-text {
-  background-size: 200% 200%;
-  animation: gradientShift 4s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  background-size: 100% 100%;
 }
 
 /* Scroll-linked parallax for sections via CSS */
@@ -832,8 +800,6 @@ button:hover {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: gradientShift 4s ease-in-out infinite;
 }
 
 /* ============================================
@@ -863,14 +829,9 @@ button:hover {
   }
 }
 
-/* Nav pill glow sutil */
+/* Nav pill — glow estático sutil, sem pulse */
 .floating-nav {
-  animation: navGlow 4s ease-in-out infinite;
-}
-
-@keyframes navGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-  50% { box-shadow: 0 0 20px 0 rgba(59, 130, 246, 0.1); }
+  box-shadow: 0 0 24px 0 rgba(59, 130, 246, 0.08);
 }
 
 /* Tech tags */

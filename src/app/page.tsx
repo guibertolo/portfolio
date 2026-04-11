@@ -123,7 +123,7 @@ export default function Home() {
             {''}
           </p>
 
-          <h1 id="hero-name" aria-label="Guilherme Bertolo" data-parallax-speed="-0.05" style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.05, userSelect: 'none', WebkitUserSelect: 'none' }}>
+          <h1 id="hero-name" aria-label="Guilherme Bertolo" data-parallax-speed="-0.05" style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.05, userSelect: 'none', WebkitUserSelect: 'none' }}>
             <span aria-hidden="true" style={{ display: 'block', marginBottom: '0.25rem' }}>
               <LetterReveal text="Guilherme" baseDelay={0.8} />
             </span>
@@ -137,7 +137,7 @@ export default function Home() {
             <span style={{ color: 'var(--c-text)', fontWeight: 500 }}>Sozinho, se precisar.</span>
           </p>
 
-          <p className="hero-fade hero-fade-3" style={{ color: 'var(--c-text-muted)', fontSize: '0.8rem', marginTop: '0.75rem', letterSpacing: '0.08em', fontFamily: 'var(--font-mono)' }}>
+          <p className="hero-fade hero-fade-3" style={{ color: 'var(--c-text-quaternary)', fontSize: '0.8rem', marginTop: '0.75rem', letterSpacing: '0.08em', fontFamily: 'var(--font-mono)' }}>
             Sites &middot; Sistemas &middot; Apps &middot; Automa&ccedil;&atilde;o com IA
           </p>
 
@@ -225,7 +225,7 @@ export default function Home() {
           <div className="reveal card-glass magnetic-card project-featured" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', position: 'relative', overflow: 'hidden', padding: '2rem' }}>
             <div className="project-status-bar" style={{ background: '#22c55e' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 700 }}>{PROJECTS[0].title}</h3>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 600, letterSpacing: '-0.03em' }}>{PROJECTS[0].title}</h3>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <StatusBadge status={PROJECTS[0].status} />
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', padding: '0.25rem 0.75rem', borderRadius: 'var(--radius-full)', background: 'rgba(59,130,246,0.15)', color: 'var(--c-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
@@ -241,7 +241,7 @@ export default function Home() {
                 { value: '<1s', label: 'Load time' },
               ].map((m) => (
                 <div key={m.label} style={{ textAlign: 'center' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-accent)' }}>{m.value}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 500, letterSpacing: '-0.02em', color: 'var(--c-accent)', fontFeatureSettings: "'tnum'", fontVariantNumeric: 'tabular-nums' }}>{m.value}</div>
                   <div className="label-mono" style={{ marginTop: '0.125rem', fontSize: '0.5rem' }}>{m.label}</div>
                 </div>
               ))}
@@ -340,9 +340,9 @@ export default function Home() {
             },
           ].map((step, i) => (
             <div key={step.title} className="reveal card-glass magnetic-card" data-delay={`${(i + 1) * 0.25}`} style={{ padding: '2rem', position: 'relative' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '2.5rem', fontWeight: 700, color: 'var(--c-accent)', opacity: 0.1, position: 'absolute', top: '1rem', right: '1.5rem' }}>{step.number}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '3rem', fontWeight: 300, color: 'var(--c-accent)', opacity: 0.12, position: 'absolute', top: '1rem', right: '1.5rem', fontFeatureSettings: "'tnum'", fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.02em' }}>{step.number}</div>
               <div style={{ marginBottom: '1rem' }}>{step.icon}</div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem' }}>{step.title}</h3>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>{step.title}</h3>
               <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.85rem', lineHeight: 1.7, fontFamily: 'var(--font-sans)' }}>{step.description}</p>
             </div>
           ))}
@@ -419,7 +419,7 @@ export default function Home() {
 
       {/* ===== FOOTER ===== */}
       <footer style={{ textAlign: 'center', padding: '2rem 1.5rem 5rem', borderTop: '1px solid var(--c-border)' }}>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--c-text-muted)', letterSpacing: '0.05em' }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--c-text-quaternary)', letterSpacing: '0.05em' }}>
           &copy; 2026 Guilherme Bertolo | Built with Next.js, Tailwind &amp; AI
         </p>
       </footer>
