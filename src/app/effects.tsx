@@ -218,21 +218,48 @@ export default function Effects() {
   const [timeLabel, setTimeLabel] = useState('');
   const pathname = usePathname();
 
-  // Re-reveal elements when navigating back to home
+  // Re-reveal elements when navigating back to home.
+  // The main Effects useEffect runs once at layout mount, so on SPA
+  // navigation back to "/" the NEW .reveal nodes created by React have
+  // no IntersectionObserver attached. Without a fresh observer, anything
+  // below the fold stays stuck at CSS opacity:0 forever.
   useEffect(() => {
     if (pathname !== '/') return;
+
+    let observer: IntersectionObserver | null = null;
     const timer = setTimeout(() => {
-      document.querySelectorAll('.reveal:not(.revealed)').forEach((el) => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            const delay = el.dataset.delay;
+            if (delay) el.style.transitionDelay = `${delay}s`;
+            el.classList.add('revealed');
+            observer?.unobserve(el);
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px 0px 0px' }
+      );
+
+      document.querySelectorAll<HTMLElement>('.reveal:not(.revealed)').forEach((el) => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
-          const htmlEl = el as HTMLElement;
-          const delay = htmlEl.dataset.delay;
-          if (delay) htmlEl.style.transitionDelay = `${delay}s`;
+          // Already (nearly) visible: reveal immediately.
+          const delay = el.dataset.delay;
+          if (delay) el.style.transitionDelay = `${delay}s`;
           el.classList.add('revealed');
+        } else {
+          // Below the fold: attach observer so it reveals as user scrolls.
+          observer?.observe(el);
         }
       });
     }, 100);
-    return () => clearTimeout(timer);
+
+    return () => {
+      clearTimeout(timer);
+      observer?.disconnect();
+    };
   }, [pathname]);
 
   // Restore scroll target set by back-link from case studies.
