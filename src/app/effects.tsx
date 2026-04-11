@@ -235,7 +235,64 @@ export default function Effects() {
     return () => clearTimeout(timer);
   }, [pathname]);
 
+  // Restore scroll target set by back-link from case studies.
+  // Uses MutationObserver + retries to handle heavy pages whose hero
+  // sections (and #projetos) only appear in the DOM after the router
+  // finishes hydrating the home page.
   useEffect(() => {
+    if (pathname !== '/') return;
+    let target: string | null = null;
+    try {
+      target = sessionStorage.getItem('portfolio-scroll-target');
+    } catch {
+      target = null;
+    }
+    if (!target) return;
+    try { sessionStorage.removeItem('portfolio-scroll-target'); } catch {}
+
+    const targetId = target;
+    const scrollToTarget = () => {
+      const el = document.getElementById(targetId);
+      if (!el) return false;
+      el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      return true;
+    };
+
+    // Try immediately in case the element is already in the DOM.
+    const found = scrollToTarget();
+
+    // Observe DOM for the element if it is not there yet.
+    let observer: MutationObserver | null = null;
+    if (!found) {
+      observer = new MutationObserver(() => {
+        if (scrollToTarget()) observer?.disconnect();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Re-scroll a few times after mount to fight late reflows
+    // (images loading, fonts swapping, GSAP resetting cards, etc).
+    const retryTimers = [60, 180, 360, 600, 1000].map((ms) =>
+      setTimeout(scrollToTarget, ms)
+    );
+
+    // Safety: stop observing after 5s no matter what.
+    const safety = setTimeout(() => observer?.disconnect(), 5000);
+
+    return () => {
+      observer?.disconnect();
+      retryTimers.forEach(clearTimeout);
+      clearTimeout(safety);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    // Forward declaration: handleShake is assigned further down (it depends
+    // on triggerMatrixRain). We need the reference available earlier because
+    // activateMotionSensors registers the listener before reaching its body.
+    let handleShake: ((e: DeviceMotionEvent) => void) | undefined;
+    const onDeviceMotion = (e: DeviceMotionEvent) => handleShake?.(e);
+
     // ===== TIME THEME =====
     // Theme transition overlay for smooth color change
     let transitionOverlay: HTMLElement | null = null;
@@ -409,7 +466,7 @@ export default function Effects() {
       const activateMotionSensors = () => {
         gyroPermissionGranted = true;
         window.addEventListener('deviceorientation', handleOrientation, { passive: true });
-        window.addEventListener('devicemotion', handleShake, { passive: true });
+        window.addEventListener('devicemotion', onDeviceMotion, { passive: true });
         localStorage.setItem('motion-granted', '1');
       };
 
@@ -833,7 +890,7 @@ export default function Effects() {
     let lastShakeX = 0, lastShakeY = 0, lastShakeZ = 0;
     let shakeCount = 0;
     let lastShakeTime = 0;
-    const handleShake = (e: DeviceMotionEvent) => {
+    handleShake = (e: DeviceMotionEvent) => {
       const acc = e.accelerationIncludingGravity;
       if (!acc || acc.x == null || acc.y == null || acc.z == null) return;
 
@@ -886,7 +943,7 @@ export default function Effects() {
       heroH1?.removeEventListener('mouseenter', showHint);
       heroH1?.removeEventListener('mouseleave', hideHint);
       document.getElementById('hero-hint')?.remove();
-      window.removeEventListener('devicemotion', handleShake);
+      window.removeEventListener('devicemotion', onDeviceMotion);
       document.getElementById('pull-reveal')?.remove();
       document.getElementById('ios-motion-btn')?.remove();
       document.getElementById('back-to-top')?.remove();

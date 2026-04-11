@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Inter, JetBrains_Mono, Instrument_Sans } from 'next/font/google';
 import './globals.css';
+import Effects from './effects';
+import FeatureToggles from './feature-toggles';
+import SmoothScroll from './smooth-scroll';
+import ShaderBackground from './shader-background';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -71,6 +75,10 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning>
         <Script id="scroll-restore" strategy="beforeInteractive">{`if("scrollRestoration" in history)history.scrollRestoration="manual";window.scrollTo(0,0);document.addEventListener("DOMContentLoaded",function(){window.scrollTo(0,0)});`}</Script>
+        <ShaderBackground />
+        <Effects />
+        <FeatureToggles />
+        <SmoothScroll />
         {children}
       </body>
     </html>

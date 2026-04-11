@@ -1,9 +1,6 @@
 import Image from 'next/image';
-import Effects from './effects';
-import FeatureToggles from './feature-toggles';
-import SmoothScroll from './smooth-scroll';
-import ShaderBackground from './shader-background';
-// Loading screen removed per market review — speed to content matters
+// Effects, ShaderBackground, FeatureToggles and SmoothScroll moved to app/layout.tsx
+// so blog and case study routes inherit the time-of-day theme and shader bg.
 
 const PROJECTS = [
   {
@@ -115,13 +112,7 @@ export default function Home() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      {/* Background — ambient blobs + noise texture */}
-      <ShaderBackground />
       <div className="bg-noise" />
-
-      <Effects />
-      <FeatureToggles />
-      <SmoothScroll />
 
       {/* ===== HERO ===== */}
       <section className="hero-section-mobile" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', maxWidth: '100%', padding: '0 1.25rem', position: 'relative' }}>
