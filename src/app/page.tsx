@@ -85,8 +85,11 @@ function LetterReveal({ text, baseDelay }: { text: string; baseDelay: number }) 
 function StatusBadge({ status }: { status: string }) {
   const colors: Record<string, { bg: string; text: string }> = {
     Live: { bg: 'rgba(34,197,94,0.15)', text: '#22c55e' },
-    'Em dev': { bg: 'rgba(59,130,246,0.15)', text: '#3b82f6' },
-    'Em estudo': { bg: 'rgba(168,85,247,0.15)', text: '#a855f7' },
+    'Em dev': {
+      bg: 'color-mix(in srgb, var(--c-accent) 15%, transparent)',
+      text: 'var(--c-accent-hover)',
+    },
+    'Em estudo': { bg: 'rgba(148,163,184,0.15)', text: '#94a3b8' },
   };
   const c = colors[status] ?? colors['Em dev'];
   return (
@@ -128,7 +131,7 @@ export default function Home() {
 
         <div style={{ textAlign: 'center', position: 'relative', zIndex: 10, padding: '0 1rem' }}>
           {/* Bracket motif removed — code identity carried by // labels and terminal mode */}
-          <p className="hero-fade hero-fade-1 typing-text" data-text="< AI Engineer & Full-stack Developer />" suppressHydrationWarning style={{ fontFamily: 'var(--font-mono)', color: 'var(--c-accent)', fontSize: '0.8rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '2rem', minHeight: '1.5em' }}>
+          <p className="hero-fade hero-fade-1 typing-text" data-text="<AI Engineer & Full-stack Developer />" suppressHydrationWarning style={{ fontFamily: 'var(--font-mono)', color: 'var(--c-accent)', fontSize: '0.8rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '2rem', minHeight: '1.5em' }}>
             {''}
           </p>
 
@@ -151,13 +154,13 @@ export default function Home() {
           </p>
 
           <div className="hero-fade hero-fade-4 hero-cta-group" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href="#contato" className="btn-outline" style={{ padding: '0.625rem 1.5rem', border: '1px solid var(--c-border)', color: 'var(--c-text-secondary)', borderRadius: 'var(--radius-full)', textDecoration: 'none', fontWeight: 500, fontSize: '0.8rem' }}>
+            <a href="#contato" className="btn-ghost">
               Contato
             </a>
-            <a href="#projetos" className="btn-primary" style={{ padding: '0.75rem 2rem', background: 'var(--c-accent)', color: 'white', borderRadius: 'var(--radius-full)', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
+            <a href="#projetos" className="btn-primary">
               Ver meu trabalho
             </a>
-            <a href="https://github.com/guibertolo" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ padding: '0.625rem 1.5rem', border: '1px solid var(--c-border)', color: 'var(--c-text-secondary)', borderRadius: 'var(--radius-full)', textDecoration: 'none', fontWeight: 500, fontSize: '0.8rem' }}>
+            <a href="https://github.com/guibertolo" target="_blank" rel="noopener noreferrer" className="btn-ghost">
               GitHub
             </a>
           </div>
@@ -234,10 +237,10 @@ export default function Home() {
           <div className="reveal card-glass magnetic-card project-featured" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', position: 'relative', overflow: 'hidden', padding: '2rem' }}>
             <div className="project-status-bar" style={{ background: '#22c55e' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 600, letterSpacing: '-0.03em' }}>{PROJECTS[0].title}</h3>
+              <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.5rem', fontWeight: 600, letterSpacing: '-0.02em' }}>{PROJECTS[0].title}</h3>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <StatusBadge status={PROJECTS[0].status} />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', padding: '0.25rem 0.75rem', borderRadius: 'var(--radius-full)', background: 'rgba(59,130,246,0.15)', color: 'var(--c-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', padding: '0.25rem 0.75rem', borderRadius: 'var(--radius-full)', background: 'color-mix(in srgb, var(--c-accent) 15%, transparent)', color: 'var(--c-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
                   {PROJECTS[0].highlight}
                 </span>
               </div>
@@ -271,9 +274,9 @@ export default function Home() {
           {/* Other projects */}
           {PROJECTS.slice(1).map((project, i) => (
             <div key={project.title} className="reveal card-glass magnetic-card" data-delay={`${(i + 1) * 0.25}`} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', position: 'relative', overflow: 'hidden' }}>
-              <div className="project-status-bar" style={{ background: project.status === 'Live' ? '#22c55e' : project.status === 'Em dev' ? '#3b82f6' : '#a855f7' }} />
+              <div className="project-status-bar" style={{ background: project.status === 'Live' ? '#22c55e' : project.status === 'Em dev' ? 'var(--c-accent-hover)' : '#94a3b8' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.1rem', fontWeight: 600 }}>{project.title}</h3>
+                <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.15rem', fontWeight: 600, letterSpacing: '-0.015em' }}>{project.title}</h3>
                 <StatusBadge status={project.status} />
               </div>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--c-accent)', fontWeight: 500, letterSpacing: '0.05em' }}>{project.highlight}</span>
