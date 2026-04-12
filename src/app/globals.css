@@ -35,7 +35,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; overflow-x: hidden; overscroll-behavior: none; }
 
 html {
   background: var(--c-bg);
@@ -706,7 +706,7 @@ section {
     left: 0;
     right: 0;
     top: auto;
-    bottom: -100px;
+    bottom: 0;
     transform: none;
     flex-direction: row;
     border-radius: 0;
@@ -714,7 +714,7 @@ section {
     border-right: none;
     border-bottom: none;
     border-top: 1px solid var(--c-border);
-    padding: 0.5rem 0.75rem calc(100px + env(safe-area-inset-bottom, 0px));
+    padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
     gap: 0;
     min-width: unset;
     align-items: center;
