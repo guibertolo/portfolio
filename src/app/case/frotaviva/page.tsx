@@ -149,7 +149,7 @@ export default function FrotaVivaCase() {
         <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 600, marginBottom: '2rem' }}>
           <span style={{ color: 'var(--c-accent)' }}>05.</span> Resultados
         </h2>
-        <div className="results-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+        <div className="results-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem' }}>
           {[
             { value: '98', label: 'Lighthouse Score' },
             { value: '< 1s', label: 'Tempo de carregamento' },

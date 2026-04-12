@@ -45,7 +45,7 @@ export default function LoadingScreen() {
         position: 'fixed',
         inset: 0,
         zIndex: 200,
-        background: '#0a0a0a',
+        background: 'var(--c-bg)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -57,19 +57,19 @@ export default function LoadingScreen() {
       }}
     >
       {/* Name */}
-      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '1.5rem', fontWeight: 700, color: '#fafafa', letterSpacing: '-0.02em' }}>
-        <span style={{ color: '#3b82f6' }}>{'{'}</span>
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.5rem', fontWeight: 700, color: 'var(--c-text)', letterSpacing: '-0.02em' }}>
+        <span style={{ color: 'var(--c-accent)' }}>{'{'}</span>
         {' GB '}
-        <span style={{ color: '#3b82f6' }}>{'}'}</span>
+        <span style={{ color: 'var(--c-accent)' }}>{'}'}</span>
       </div>
 
       {/* Progress bar */}
-      <div style={{ width: '200px', height: '2px', background: 'rgba(255,255,255,0.08)', borderRadius: '1px', overflow: 'hidden' }}>
+      <div style={{ width: '200px', height: '2px', background: 'var(--c-border)', borderRadius: '1px', overflow: 'hidden' }}>
         <div
           style={{
             width: `${progress}%`,
             height: '100%',
-            background: '#3b82f6',
+            background: 'var(--c-accent)',
             borderRadius: '1px',
             transition: 'width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           }}
@@ -77,7 +77,7 @@ export default function LoadingScreen() {
       </div>
 
       {/* Status text */}
-      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.65rem', color: '#52525b', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--c-text-muted)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
         {progress < 30 ? 'inicializando...' : progress < 60 ? 'carregando assets...' : progress < 100 ? 'renderizando...' : 'pronto'}
       </div>
     </div>
