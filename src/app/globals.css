@@ -6,8 +6,8 @@
   --c-bg-card-hover: var(--theme-bg-card-hover, rgba(255, 255, 255, 0.075));
   --c-bg-card-featured: var(--theme-bg-card-featured, rgba(255, 255, 255, 0.055));
   --c-border: var(--theme-border, rgba(255, 255, 255, 0.08));
-  --c-accent: var(--theme-accent, #3b82f6);
-  --c-accent-hover: var(--theme-accent-hover, #60a5fa);
+  --c-accent: var(--theme-accent, #a855f7);
+  --c-accent-hover: var(--theme-accent-hover, #c084fc);
   --c-text: #fafafa;
   --c-text-secondary: #a1a1aa;
   --c-text-muted: #848490;
@@ -349,7 +349,7 @@ section {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-gradient-mid, #a855f7) 50%, var(--c-accent-hover) 100%);
+  background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-gradient-mid, #ec4899) 50%, var(--c-accent-hover) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -361,7 +361,7 @@ section {
 }
 
 .gradient-text-hero .hero-name span {
-  background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-gradient-mid, #a855f7) 50%, var(--c-accent-hover) 100%);
+  background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-gradient-mid, #ec4899) 50%, var(--c-accent-hover) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -973,7 +973,7 @@ button:hover {
 
 /* Gradient text inside split — apply gradient per char since inline-block breaks parent background-clip */
 .split-reveal .gradient-text-split .split-char {
-  background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-gradient-mid, #a855f7) 50%, var(--c-accent-hover) 100%);
+  background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-gradient-mid, #ec4899) 50%, var(--c-accent-hover) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

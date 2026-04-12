@@ -6,20 +6,17 @@ import { Suspense, useState, useEffect, useCallback, useRef } from 'react';
 const WaterShader = dynamic(() => import('./water-shader'), { ssr: false });
 
 // Cores do shader por periodo do dia (acompanha o tema do site)
+// Inativos guardados: amanhecer { '#1a0a00', '#5c3a1e', '#0d0a08' }, emerald { '#001a12', '#0e5c3a', '#080a09' }
 const THEME_COLORS: Record<string, { color1: string; color2: string; color3: string }> = {
-  amanhecer: { color1: '#1a0a00', color2: '#5c3a1e', color3: '#0d0a08' },
-  'manhã':   { color1: '#001a1f', color2: '#0e4a5c', color3: '#080a0d' },
-  tarde:     { color1: '#0f172a', color2: '#1e3a5f', color3: '#0a0a0a' },
-  entardecer:{ color1: '#1a0a20', color2: '#4a1e5c', color3: '#0a080d' },
-  noite:     { color1: '#0a0820', color2: '#2a1a6a', color3: '#080412' },
+  'manhã': { color1: '#001a1f', color2: '#0e4a5c', color3: '#080a0d' },
+  tarde:   { color1: '#1a0a20', color2: '#4a1e5c', color3: '#0a080d' },
+  noite:   { color1: '#200a18', color2: '#5c1a3a', color3: '#120610' },
 };
 
 function getThemeLabel(): string {
   const hour = new Date().getHours();
-  if (hour >= 6 && hour < 8) return 'amanhecer';
-  if (hour >= 8 && hour < 12) return 'manhã';
-  if (hour >= 12 && hour < 17) return 'tarde';
-  if (hour >= 17 && hour < 20) return 'entardecer';
+  if (hour >= 6 && hour < 12) return 'manhã';
+  if (hour >= 12 && hour < 22) return 'tarde';
   return 'noite';
 }
 
@@ -71,10 +68,8 @@ export default function ShaderBackground() {
     const handleForceTheme = (e: Event) => {
       const hour = (e as CustomEvent).detail as number;
       let label = 'noite';
-      if (hour >= 6 && hour < 8) label = 'amanhecer';
-      else if (hour >= 8 && hour < 12) label = 'manhã';
-      else if (hour >= 12 && hour < 17) label = 'tarde';
-      else if (hour >= 17 && hour < 20) label = 'entardecer';
+      if (hour >= 6 && hour < 12) label = 'manhã';
+      else if (hour >= 12 && hour < 22) label = 'tarde';
       setColors(THEME_COLORS[label]);
     };
     window.addEventListener('force-theme', handleForceTheme);

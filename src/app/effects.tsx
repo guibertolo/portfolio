@@ -4,75 +4,52 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 // ===== THEME BY TIME OF DAY =====
+// Temas inativos (guardados pra reativar depois):
+// - Amanhecer (amber/red): accent #f59e0b, gradient-mid #ef4444
+// - Emerald (green/teal): accent #10b981, gradient-mid #14b8a6
+
+const THEMES = {
+  manha: {
+    '--theme-bg': '#080a0d',
+    '--theme-accent': '#06b6d4',
+    '--theme-accent-hover': '#22d3ee',
+    '--theme-gradient-mid': '#10b981',
+    '--theme-glow': 'rgba(6, 182, 212, 0.12)',
+    '--theme-bg-card': 'rgba(6, 182, 212, 0.04)',
+    '--theme-bg-card-hover': 'rgba(6, 182, 212, 0.08)',
+    '--theme-border': 'rgba(6, 182, 212, 0.08)',
+    label: 'manhã',
+  },
+  tarde: {
+    '--theme-bg': '#0a080d',
+    '--theme-accent': '#a855f7',
+    '--theme-accent-hover': '#c084fc',
+    '--theme-gradient-mid': '#ec4899',
+    '--theme-glow': 'rgba(168, 85, 247, 0.12)',
+    '--theme-bg-card': 'rgba(168, 85, 247, 0.04)',
+    '--theme-bg-card-hover': 'rgba(168, 85, 247, 0.08)',
+    '--theme-border': 'rgba(168, 85, 247, 0.08)',
+    label: 'tarde',
+  },
+  noite: {
+    '--theme-bg': '#0a0608',
+    '--theme-accent': '#e11d48',
+    '--theme-accent-hover': '#fb7185',
+    '--theme-gradient-mid': '#be123c',
+    '--theme-glow': 'rgba(225, 29, 72, 0.12)',
+    '--theme-bg-card': 'rgba(225, 29, 72, 0.04)',
+    '--theme-bg-card-hover': 'rgba(225, 29, 72, 0.08)',
+    '--theme-border': 'rgba(225, 29, 72, 0.08)',
+    label: 'noite',
+  },
+};
+
 function getTimeTheme() {
   const hour = new Date().getHours();
 
-  if (hour >= 6 && hour < 8) {
-    // Amanhecer — tons quentes
-    return {
-      '--theme-bg': '#0d0a08',
-      '--theme-accent': '#f59e0b',
-      '--theme-accent-hover': '#fbbf24',
-      '--theme-gradient-mid': '#ef4444',
-      '--theme-glow': 'rgba(245, 158, 11, 0.12)',
-      '--theme-bg-card': 'rgba(245, 158, 11, 0.04)',
-      '--theme-bg-card-hover': 'rgba(245, 158, 11, 0.08)',
-      '--theme-border': 'rgba(245, 158, 11, 0.08)',
-      label: 'amanhecer',
-    };
-  } else if (hour >= 8 && hour < 12) {
-    // Manhã — azul claro energético
-    return {
-      '--theme-bg': '#080a0d',
-      '--theme-accent': '#06b6d4',
-      '--theme-accent-hover': '#22d3ee',
-      '--theme-gradient-mid': '#10b981',
-      '--theme-glow': 'rgba(6, 182, 212, 0.12)',
-      '--theme-bg-card': 'rgba(6, 182, 212, 0.04)',
-      '--theme-bg-card-hover': 'rgba(6, 182, 212, 0.08)',
-      '--theme-border': 'rgba(6, 182, 212, 0.08)',
-      label: 'manhã',
-    };
-  } else if (hour >= 12 && hour < 17) {
-    // Tarde — azul padrão
-    return {
-      '--theme-bg': '#0a0a0a',
-      '--theme-accent': '#3b82f6',
-      '--theme-accent-hover': '#60a5fa',
-      '--theme-gradient-mid': '#a855f7',
-      '--theme-glow': 'rgba(59, 130, 246, 0.12)',
-      '--theme-bg-card': 'rgba(255, 255, 255, 0.04)',
-      '--theme-bg-card-hover': 'rgba(255, 255, 255, 0.08)',
-      '--theme-border': 'rgba(255, 255, 255, 0.08)',
-      label: 'tarde',
-    };
-  } else if (hour >= 17 && hour < 20) {
-    // Entardecer — roxo/violeta
-    return {
-      '--theme-bg': '#0a080d',
-      '--theme-accent': '#a855f7',
-      '--theme-accent-hover': '#c084fc',
-      '--theme-gradient-mid': '#ec4899',
-      '--theme-glow': 'rgba(168, 85, 247, 0.12)',
-      '--theme-bg-card': 'rgba(168, 85, 247, 0.04)',
-      '--theme-bg-card-hover': 'rgba(168, 85, 247, 0.08)',
-      '--theme-border': 'rgba(168, 85, 247, 0.08)',
-      label: 'entardecer',
-    };
-  } else {
-    // Noite — azul profundo
-    return {
-      '--theme-bg': '#060810',
-      '--theme-accent': '#4f52d9',
-      '--theme-accent-hover': '#818cf8',
-      '--theme-gradient-mid': '#a855f7',
-      '--theme-glow': 'rgba(99, 102, 241, 0.15)',
-      '--theme-bg-card': 'rgba(99, 102, 241, 0.04)',
-      '--theme-bg-card-hover': 'rgba(99, 102, 241, 0.08)',
-      '--theme-border': 'rgba(99, 102, 241, 0.08)',
-      label: 'noite',
-    };
-  }
+  if (hour >= 6 && hour < 12) return THEMES.manha;
+  if (hour >= 12 && hour < 22) return THEMES.tarde;
+  return THEMES.noite;
 }
 
 // ===== SOUND ENGINE =====
