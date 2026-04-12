@@ -720,6 +720,8 @@ section {
     align-items: center;
     justify-content: space-around;
     width: 100%;
+    background: var(--c-bg);
+    backdrop-filter: none;
   }
   .floating-nav .nav-link,
   .floating-nav .nav-cta {
