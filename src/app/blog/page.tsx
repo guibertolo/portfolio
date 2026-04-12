@@ -69,12 +69,13 @@ export default function BlogPage() {
           {POSTS.map((post) => (
             <article key={post.slug} style={{ position: 'relative' }}>
               {post.soon ? (
-                <div style={{
+                <div aria-disabled="true" style={{
                   background: 'var(--c-bg-card)',
                   border: '1px solid var(--c-border)',
                   borderRadius: '16px',
                   padding: '2rem',
                   opacity: 0.5,
+                  pointerEvents: 'none',
                 }}>
                   <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
                     {post.tags.map((tag) => (

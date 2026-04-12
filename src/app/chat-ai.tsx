@@ -97,9 +97,28 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
+    const container = containerRef.current;
+    if (!container) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const focusable = container.querySelectorAll<HTMLElement>('button, input, a[href]');
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    container.addEventListener('keydown', handleKeyDown);
+    return () => container.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -124,7 +143,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div style={{
+    <div ref={containerRef} style={{
       position: 'fixed',
       bottom: '5rem',
       right: '1.5rem',
@@ -140,7 +159,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
       flexDirection: 'column',
       overflow: 'hidden',
       zIndex: 60,
-      boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+      boxShadow: '0 20px 60px color-mix(in srgb, var(--c-accent) 15%, rgba(0,0,0,0.4))',
     }} className="chat-container" role="dialog" aria-label="Chat com assistente">
       {/* Header */}
       <div style={{ padding: '1rem', borderBottom: '1px solid var(--c-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -169,7 +188,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
               color: msg.role === 'user' ? 'white' : 'var(--c-text-secondary)',
               fontSize: '0.8rem',
               lineHeight: 1.5,
-              fontFamily: 'var(--font-sans, Inter, sans-serif)',
+              fontFamily: 'var(--font-sans)',
             }}>
               {msg.text.split(/(https?:\/\/[^\s]+)/g).map((part, j) =>
                 part.match(/^https?:\/\//) ? (

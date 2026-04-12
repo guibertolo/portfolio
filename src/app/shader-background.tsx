@@ -56,8 +56,12 @@ export default function ShaderBackground() {
     document.addEventListener('visibilitychange', handleVisibility);
 
     // Dispatch scroll to shader — mesh moves internally to show different terrain
+    let scrollRaf = 0;
     const handleScroll = () => {
-      window.dispatchEvent(new CustomEvent('shader-scroll', { detail: window.scrollY }));
+      cancelAnimationFrame(scrollRaf);
+      scrollRaf = requestAnimationFrame(() => {
+        window.dispatchEvent(new CustomEvent('shader-scroll', { detail: window.scrollY }));
+      });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 

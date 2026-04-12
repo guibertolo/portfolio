@@ -65,7 +65,7 @@ export default function SiteAdvogadaCase() {
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', padding: '0.25rem 0.75rem', borderRadius: '9999px', background: 'color-mix(in srgb, var(--c-success) 15%, transparent)', color: 'var(--c-success)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
             Live
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', padding: '0.25rem 0.75rem', borderRadius: '9999px', background: 'rgba(59,130,246,0.15)', color: 'var(--c-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', padding: '0.25rem 0.75rem', borderRadius: '9999px', background: 'color-mix(in srgb, var(--c-accent) 15%, transparent)', color: 'var(--c-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
             Client Work
           </span>
         </div>
