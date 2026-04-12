@@ -122,7 +122,7 @@ export default function Home() {
 
         <div style={{ textAlign: 'center', position: 'relative', zIndex: 10, padding: '0 1rem' }}>
           {/* Bracket motif removed — code identity carried by // labels and terminal mode */}
-          <p className="hero-fade hero-fade-1 typing-text" data-text="<AI Engineer & Full-stack Developer />" suppressHydrationWarning style={{ fontFamily: 'var(--font-mono)', color: 'var(--c-accent)', fontSize: '0.8rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '2rem', minHeight: '1.5em' }}>
+          <p className="hero-fade hero-fade-1 typing-text" data-text="building products, not templates" suppressHydrationWarning style={{ fontFamily: 'var(--font-mono)', color: 'var(--c-accent)', fontSize: '0.8rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '2rem', minHeight: '1.5em', paddingLeft: '0.6em' }}>
             {''}
           </p>
 
@@ -182,7 +182,7 @@ export default function Home() {
           </div>
 
           <div style={{ flex: 1, minWidth: '280px' }}>
-          <p className="section-label">{'// sobre mim'}</p>
+          <p className="section-label">{'· sobre mim'}</p>
           <h2 className="section-title" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>
             +10 anos resolvendo problemas.{' '}
             <span className="gradient-text">Os últimos, com código e IA.</span>
@@ -218,7 +218,7 @@ export default function Home() {
       {/* ===== PROJETOS ===== */}
       <section id="projetos">
         <div className="reveal">
-          <p className="section-label">{'// projetos'}</p>
+          <p className="section-label">{'· projetos'}</p>
           <h2 className="section-title">O que estou <span className="gradient-text">construindo</span></h2>
         </div>
 
@@ -293,7 +293,7 @@ export default function Home() {
       {/* ===== TECH STACK ===== */}
       <section id="stack">
         <div className="reveal">
-          <p className="section-label">{'// tech stack'}</p>
+          <p className="section-label">{'· tech stack'}</p>
           <h2 className="section-title">Ferramentas que <span className="gradient-text">domino</span></h2>
         </div>
 
@@ -317,35 +317,27 @@ export default function Home() {
       {/* ===== COMO EU TRABALHO ===== */}
       <section id="processo">
         <div className="reveal">
-          <p className="section-label">{'// processo'}</p>
+          <p className="section-label">{'· processo'}</p>
           <h2 className="section-title">Como eu <span className="gradient-text">trabalho</span></h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+        <div style={{ maxWidth: '640px', display: 'flex', flexDirection: 'column' }}>
           {[
             {
               title: 'Conversa e escopo',
               description: 'Começa com uma conversa pra entender o que você precisa. Defino escopo, prazo e entregáveis antes de escrever uma linha de código. Sem surpresas.',
-              icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>,
-              number: '01',
             },
             {
               title: 'Protótipo rápido',
               description: 'Em dias você já vê uma versão funcionando no ar. Valida antes de avançar. Ajustes no caminho, não no final.',
-              icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
-              number: '02',
             },
             {
               title: 'Entrega + suporte',
               description: 'Entrego o produto funcionando com deploy, SEO e performance otimizada. Suporte incluído por 30 dias após a entrega.',
-              icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
-              number: '03',
             },
           ].map((step, i) => (
-            <div key={step.title} className="reveal card-glass magnetic-card" data-delay={`${(i + 1) * 0.25}`} style={{ padding: '2rem', position: 'relative' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '3rem', fontWeight: 300, color: 'var(--c-accent)', opacity: 0.12, position: 'absolute', top: '1rem', right: '1.5rem', fontFeatureSettings: "'tnum'", fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.02em' }}>{step.number}</div>
-              <div style={{ marginBottom: '1rem' }}>{step.icon}</div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>{step.title}</h3>
+            <div key={step.title} className="reveal" data-delay={`${(i + 1) * 0.2}`} style={{ padding: '1.5rem 0', borderBottom: '1px solid var(--c-border)' }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>{step.title}</h3>
               <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.85rem', lineHeight: 1.7, fontFamily: 'var(--font-sans)' }}>{step.description}</p>
             </div>
           ))}
@@ -355,7 +347,7 @@ export default function Home() {
       {/* ===== EXPERIENCIA ===== */}
       <section id="experiencia">
         <div className="reveal">
-          <p className="section-label">{'// experiência'}</p>
+          <p className="section-label">{'· experiência'}</p>
           <h2 className="section-title">Minha <span className="gradient-text">trajetória</span></h2>
         </div>
 
@@ -378,7 +370,7 @@ export default function Home() {
       {/* ===== CONTATO ===== */}
       <section id="contato" style={{ textAlign: 'center', paddingBottom: '6rem' }}>
         <div className="reveal">
-          <p className="section-label">{'// contato'}</p>
+          <p className="section-label">{'· contato'}</p>
           <h2 className="section-title no-split" style={{ textAlign: 'center' }}>Vamos <span className="gradient-text">conversar</span>?</h2>
           <p style={{ color: 'var(--c-text-secondary)', fontSize: '1rem', maxWidth: '520px', margin: '0 auto 1.5rem', lineHeight: 1.7 }}>Aberto a oportunidades como AI Engineer, projetos freelance e colaborações técnicas.</p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '2rem' }}>
