@@ -60,7 +60,7 @@ export default function FeatureToggles() {
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: '1.25rem',
-          boxShadow: '0 4px 20px rgba(59,130,246,0.4)',
+          boxShadow: '0 4px 20px color-mix(in srgb, var(--c-accent) 40%, transparent)',
           transition: 'transform 0.3s',
         }}
         title="Pergunte sobre mim"

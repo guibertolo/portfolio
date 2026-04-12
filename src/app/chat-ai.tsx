@@ -133,8 +133,8 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
       maxWidth: 'calc(100vw - 1.5rem)',
       height: '500px',
       maxHeight: 'calc(100vh - 8rem)',
-      background: '#0d1117',
-      border: '1px solid rgba(255,255,255,0.1)',
+      background: 'var(--c-bg)',
+      border: '1px solid var(--c-border)',
       borderRadius: '16px',
       display: 'flex',
       flexDirection: 'column',
@@ -143,16 +143,16 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
       boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
     }} className="chat-container" role="dialog" aria-label="Chat com assistente">
       {/* Header */}
-      <div style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ padding: '1rem', borderBottom: '1px solid var(--c-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 600, color: '#fafafa' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 600, color: 'var(--c-text)' }}>
             Pergunte sobre mim
           </div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#848490', marginTop: '0.125rem' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--c-text-muted)', marginTop: '0.125rem' }}>
             AI Assistant • Online
           </div>
         </div>
-        <button onClick={onClose} aria-label="Fechar chat" style={{ background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: '#848490', width: '28px', height: '28px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={onClose} aria-label="Fechar chat" style={{ background: 'none', border: '1px solid var(--c-border)', color: 'var(--c-text-muted)', width: '28px', height: '28px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           ✕
         </button>
       </div>
@@ -165,8 +165,8 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
               maxWidth: '85%',
               padding: '0.625rem 0.875rem',
               borderRadius: msg.role === 'user' ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
-              background: msg.role === 'user' ? 'var(--c-accent, #3b82f6)' : 'rgba(255,255,255,0.06)',
-              color: msg.role === 'user' ? 'white' : '#a1a1aa',
+              background: msg.role === 'user' ? 'var(--c-accent)' : 'var(--c-bg-card)',
+              color: msg.role === 'user' ? 'white' : 'var(--c-text-secondary)',
               fontSize: '0.8rem',
               lineHeight: 1.5,
               fontFamily: 'var(--font-sans, Inter, sans-serif)',
@@ -182,7 +182,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
 
         {isTyping && (
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-            <div style={{ padding: '0.625rem 0.875rem', borderRadius: '12px 12px 12px 2px', background: 'rgba(255,255,255,0.06)', color: '#848490', fontSize: '0.8rem' }}>
+            <div style={{ padding: '0.625rem 0.875rem', borderRadius: '12px 12px 12px 2px', background: 'var(--c-bg-card)', color: 'var(--c-text-muted)', fontSize: '0.8rem' }}>
               <span style={{ animation: 'pulse 1s ease-in-out infinite' }}>●</span>
               <span style={{ animation: 'pulse 1s ease-in-out infinite 0.2s' }}> ●</span>
               <span style={{ animation: 'pulse 1s ease-in-out infinite 0.4s' }}> ●</span>
@@ -192,7 +192,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* Input */}
-      <form onSubmit={send} style={{ padding: '0.75rem 1rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', gap: '0.5rem' }}>
+      <form onSubmit={send} style={{ padding: '0.75rem 1rem', borderTop: '1px solid var(--c-border)', display: 'flex', gap: '0.5rem' }}>
         <input
           ref={inputRef}
           value={input}
@@ -200,17 +200,17 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
           placeholder="Pergunte algo..."
           style={{
             flex: 1,
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.08)',
+            background: 'var(--c-bg-card)',
+            border: '1px solid var(--c-border)',
             borderRadius: '8px',
             padding: '0.5rem 0.75rem',
-            color: '#fafafa',
+            color: 'var(--c-text)',
             fontSize: '16px',
-            fontFamily: 'var(--font-sans, Inter, sans-serif)',
+            fontFamily: 'var(--font-sans)',
           }}
         />
         <button type="submit" style={{
-          background: 'var(--c-accent, #3b82f6)',
+          background: 'var(--c-accent)',
           border: 'none',
           borderRadius: '8px',
           padding: '0.5rem 0.875rem',

@@ -12,6 +12,7 @@
   --c-text-secondary: #a1a1aa;
   --c-text-muted: #848490;
   --c-text-quaternary: #5e6168;
+  --c-success: #22c55e;
   --c-gradient-mid: var(--theme-gradient-mid, #a855f7);
   --c-glow: var(--theme-glow, rgba(59, 130, 246, 0.12));
   --font-sans: 'Inter', system-ui, sans-serif;

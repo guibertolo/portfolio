@@ -9,10 +9,10 @@ interface ContributionDay {
 
 const LEVEL_COLORS = [
   'rgba(255,255,255,0.04)',
-  'rgba(59,130,246,0.2)',
-  'rgba(59,130,246,0.4)',
-  'rgba(59,130,246,0.6)',
-  'rgba(59,130,246,0.9)',
+  'color-mix(in srgb, var(--c-accent) 20%, transparent)',
+  'color-mix(in srgb, var(--c-accent) 40%, transparent)',
+  'color-mix(in srgb, var(--c-accent) 60%, transparent)',
+  'color-mix(in srgb, var(--c-accent) 90%, transparent)',
 ];
 
 export default function GitHubHeatmap() {

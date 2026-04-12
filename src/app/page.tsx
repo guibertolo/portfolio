@@ -81,7 +81,7 @@ function LetterReveal({ text, baseDelay }: { text: string; baseDelay: number }) 
 
 function StatusBadge({ status }: { status: string }) {
   const colors: Record<string, { bg: string; text: string }> = {
-    Live: { bg: 'rgba(34,197,94,0.15)', text: '#22c55e' },
+    Live: { bg: 'color-mix(in srgb, var(--c-success) 15%, transparent)', text: 'var(--c-success)' },
     'Em dev': {
       bg: 'color-mix(in srgb, var(--c-accent) 15%, transparent)',
       text: 'var(--c-accent-hover)',
@@ -226,7 +226,7 @@ export default function Home() {
         <div className="projects-masonry">
           {/* Hero project — FrotaViva (featured, spans 2 rows) */}
           <div className="reveal card-glass magnetic-card project-featured" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', position: 'relative', overflow: 'hidden', padding: '2rem' }}>
-            <div className="project-status-bar" style={{ background: '#22c55e' }} />
+            <div className="project-status-bar" style={{ background: 'var(--c-success)' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.5rem', fontWeight: 600, letterSpacing: '-0.02em' }}>{PROJECTS[0].title}</h3>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -265,7 +265,7 @@ export default function Home() {
           {/* Other projects */}
           {PROJECTS.slice(1).map((project, i) => (
             <div key={project.title} className="reveal card-glass magnetic-card" data-delay={`${(i + 1) * 0.25}`} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', position: 'relative', overflow: 'hidden' }}>
-              <div className="project-status-bar" style={{ background: project.status === 'Live' ? '#22c55e' : project.status === 'Em dev' ? 'var(--c-accent-hover)' : '#94a3b8' }} />
+              <div className="project-status-bar" style={{ background: project.status === 'Live' ? 'var(--c-success)' : project.status === 'Em dev' ? 'var(--c-accent-hover)' : 'var(--c-text-muted)' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.15rem', fontWeight: 600, letterSpacing: '-0.015em' }}>{project.title}</h3>
                 <StatusBadge status={project.status} />
