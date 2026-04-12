@@ -136,7 +136,7 @@ export default function TerminalMode({ onClose }: { onClose: () => void }) {
       {/* Title bar */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', background: 'var(--c-bg-card)', borderBottom: '1px solid var(--c-border)' }}>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f85149', cursor: 'pointer' }} onClick={onClose} aria-label="Fechar terminal" role="button" />
+          <button style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f85149', cursor: 'pointer', border: 'none', padding: 0 }} onClick={onClose} aria-label="Fechar terminal" />
           <span aria-hidden="true" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#d29922' }} />
           <span aria-hidden="true" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#3fb950' }} />
         </div>

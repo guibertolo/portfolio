@@ -53,8 +53,8 @@ export default function BlogPage() {
       </header>
 
       <section style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 1, padding: '3rem 1.5rem 2rem' }}>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--c-accent)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-          {'// blog'}
+        <p className="section-label">
+          {'· blog'}
         </p>
         <h1 style={{ fontFamily: 'var(--font-display, var(--font-mono))', fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 700, marginBottom: '1rem' }}>
           Artigos e <span className="gradient-text">aprendizados</span>

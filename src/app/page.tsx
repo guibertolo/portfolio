@@ -87,7 +87,7 @@ function StatusBadge({ status }: { status: string }) {
       bg: 'color-mix(in srgb, var(--c-accent) 15%, transparent)',
       text: 'var(--c-accent-hover)',
     },
-    'Em estudo': { bg: 'rgba(148,163,184,0.15)', text: '#94a3b8' },
+    'Em estudo': { bg: 'color-mix(in srgb, var(--c-text-muted) 15%, transparent)', text: 'var(--c-text-muted)' },
   };
   const c = colors[status] ?? colors['Em dev'];
   return (
@@ -116,7 +116,7 @@ export default function Home() {
       <div className="bg-noise" />
 
       {/* ===== HERO ===== */}
-      <section className="hero-section-mobile" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', maxWidth: '100%', padding: '0 1.25rem', position: 'relative' }}>
+      <section className="hero-section-mobile" style={{ minHeight: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center', maxWidth: '100%', padding: '0 1.25rem', position: 'relative' }}>
         <div className="hero-glow" data-parallax="0.3" data-parallax-speed="0.3" />
         <div className="hero-grid" data-parallax="0.1" data-parallax-speed="0.15" />
         {/* particles removed — hero cleaner */}
