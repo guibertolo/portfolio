@@ -722,6 +722,7 @@ section {
     width: 100%;
     background: var(--c-bg);
     backdrop-filter: none;
+    overflow: visible;
   }
   .floating-nav::after {
     content: '';
@@ -729,8 +730,9 @@ section {
     left: 0;
     right: 0;
     top: 100%;
-    height: 100px;
+    height: 150px;
     background: var(--c-bg);
+    pointer-events: none;
   }
   .floating-nav .nav-link,
   .floating-nav .nav-cta {
@@ -782,7 +784,7 @@ section {
   }
 
   .fixed-chat-btn {
-    bottom: 4.5rem !important;
+    bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)) !important;
     right: 0.75rem !important;
     width: 44px !important;
     height: 44px !important;
