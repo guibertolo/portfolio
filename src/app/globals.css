@@ -714,7 +714,7 @@ section {
     border-right: none;
     border-bottom: none;
     border-top: 1px solid var(--c-border);
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
     gap: 0;
     min-width: unset;
     align-items: center;
@@ -745,6 +745,8 @@ section {
   .nav-link { font-size: 0.6rem !important; }
 
   section { padding: 3rem 1.25rem; }
+
+  footer { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)) !important; }
 
   .hero-name span { font-size: inherit; }
 
