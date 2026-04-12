@@ -93,7 +93,7 @@ export default function FrotaVivaCase() {
         <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 600, marginBottom: '1.5rem' }}>
           <span style={{ color: 'var(--c-accent)' }}>01.</span> O Problema
         </h2>
-        <div style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '16px', padding: '2rem' }}>
+        <div style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-lg)', padding: '2rem' }}>
           <p style={{ color: 'var(--c-text-secondary)', lineHeight: 1.8 }}>
             Imagina gerenciar 15 caminhões, 20 motoristas e dezenas de viagens por mês usando uma planilha do Excel e um grupo de WhatsApp. O dono da frota acordava, abria o celular e tentava montar o quebra-cabeça do dia com mensagens de áudio e anotações em caderno. Quem está disponível? Qual caminhão precisa de manutenção? Quanto custou a última viagem? Ninguém sabia responder sem ligar pra três pessoas. Informação crítica espalhada em cinco lugares diferentes. Decisões tomadas no achismo.
           </p>
@@ -120,7 +120,7 @@ export default function FrotaVivaCase() {
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
           {FEATURES.map((f) => (
-            <div key={f.title} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '1.5rem' }}>
+            <div key={f.title} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-md)', padding: '1.5rem' }}>
               <div style={{ marginBottom: '0.75rem' }}>{f.icon}</div>
               <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.5rem' }}>{f.title}</h3>
               <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.8rem', lineHeight: 1.6 }}>{f.description}</p>
@@ -136,7 +136,7 @@ export default function FrotaVivaCase() {
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
           {STACK.map((s) => (
-            <div key={s.name} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '8px', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div key={s.name} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-xs)', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 600 }}>{s.name}</span>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--c-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{s.role}</span>
             </div>
@@ -155,7 +155,7 @@ export default function FrotaVivaCase() {
             { value: '< 1s', label: 'Tempo de carregamento' },
             { value: '100%', label: 'Funcional via web' },
           ].map((r) => (
-            <div key={r.label} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '1.5rem', textAlign: 'center' }}>
+            <div key={r.label} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-md)', padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '2rem', fontWeight: 700, color: 'var(--c-accent)' }}>{r.value}</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--c-text-muted)', marginTop: '0.375rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{r.label}</div>
             </div>
@@ -168,7 +168,7 @@ export default function FrotaVivaCase() {
         <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 600, marginBottom: '1.5rem' }}>
           <span style={{ color: 'var(--c-accent)' }}>06.</span> O que aprendi
         </h2>
-        <div style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '16px', padding: '2rem' }}>
+        <div style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-lg)', padding: '2rem' }}>
           <ul style={{ color: 'var(--c-text-secondary)', lineHeight: 2, fontSize: '0.9rem', paddingLeft: '1.25rem' }}>
             <li>RLS (Row Level Security) no Supabase é poderoso mas exige planejamento cuidadoso desde o início</li>
             <li>Tailwind v4 trouxe melhorias mas também breaking changes que exigem atenção</li>

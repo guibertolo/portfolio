@@ -43,7 +43,7 @@ export function ScreenshotGallery({ screenshots }: ScreenshotGalleryProps) {
             style={{
               background: 'var(--c-bg-card)',
               border: '1px solid var(--c-border)',
-              borderRadius: '12px',
+              borderRadius: 'var(--radius-md)',
               overflow: 'hidden',
               cursor: 'zoom-in',
               padding: 0,
@@ -165,7 +165,7 @@ export function ScreenshotGallery({ screenshots }: ScreenshotGalleryProps) {
               alt={screenshots[active].label}
               width={1400}
               height={800}
-              style={{ maxWidth: '90vw', maxHeight: '80vh', width: 'auto', height: 'auto', borderRadius: '8px', objectFit: 'contain' }}
+              style={{ maxWidth: '90vw', maxHeight: '80vh', width: 'auto', height: 'auto', borderRadius: 'var(--radius-xs)', objectFit: 'contain' }}
             />
             <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '1rem' }}>
               {screenshots[active].label} — {active + 1}/{screenshots.length}

@@ -23,7 +23,7 @@ function P({ children }: { children: React.ReactNode }) {
 
 function CodeBlock({ children }: { children: string }) {
   return (
-    <pre style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '1.25rem', overflow: 'auto', marginBottom: '1.25rem', marginTop: '1.25rem', fontSize: '0.8rem', lineHeight: 1.7, fontFamily: 'var(--font-mono)', color: 'var(--c-text-secondary)' }}>
+    <pre style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-md)', padding: '1.25rem', overflow: 'auto', marginBottom: '1.25rem', marginTop: '1.25rem', fontSize: '0.8rem', lineHeight: 1.7, fontFamily: 'var(--font-mono)', color: 'var(--c-text-secondary)' }}>
       <code>{children}</code>
     </pre>
   );

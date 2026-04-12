@@ -15,9 +15,10 @@
   --c-success: #22c55e;
   --c-gradient-mid: var(--theme-gradient-mid, #a855f7);
   --c-glow: var(--theme-glow, rgba(59, 130, 246, 0.12));
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --font-display: 'Instrument Sans', system-ui, sans-serif;
+  --radius-xs: 8px;
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 16px;

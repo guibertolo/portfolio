@@ -99,7 +99,7 @@ export default function SiteAdvogadaCase() {
         <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 600, marginBottom: '1.5rem' }}>
           <span style={{ color: 'var(--c-accent)' }}>01.</span> O Desafio
         </h2>
-        <div style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '16px', padding: '2rem' }}>
+        <div style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-lg)', padding: '2rem' }}>
           <p style={{ color: 'var(--c-text-secondary)', lineHeight: 1.8 }}>
             Advogados de família dependem de indicação. Mas quando alguém pesquisa &quot;advogada divórcio São Bernardo&quot; no Google, precisa encontrar. A Dra. Gislaine não tinha site, não aparecia em buscas e perdia clientes que procuravam online. O desafio era criar uma presença digital que passasse credibilidade, explicasse as áreas de atuação sem juridiquês e levasse o visitante ao contato com o mínimo de atrito.
           </p>
@@ -113,7 +113,7 @@ export default function SiteAdvogadaCase() {
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
           {FEATURES.map((f) => (
-            <div key={f.title} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '1.5rem' }}>
+            <div key={f.title} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-md)', padding: '1.5rem' }}>
               <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.5rem' }}>{f.title}</h3>
               <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.8rem', lineHeight: 1.6 }}>{f.description}</p>
             </div>
@@ -128,7 +128,7 @@ export default function SiteAdvogadaCase() {
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
           {STACK.map((s) => (
-            <div key={s.name} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: '8px', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div key={s.name} style={{ background: 'var(--c-bg-card)', border: '1px solid var(--c-border)', borderRadius: 'var(--radius-xs)', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 600 }}>{s.name}</span>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--c-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{s.role}</span>
             </div>

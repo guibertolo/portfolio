@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Inter, JetBrains_Mono, Instrument_Sans } from 'next/font/google';
+import { DM_Sans, JetBrains_Mono, Instrument_Sans } from 'next/font/google';
 import './globals.css';
 import Effects from './effects';
 import FeatureToggles from './feature-toggles';
 import SmoothScroll from './smooth-scroll';
 import ShaderBackground from './shader-background';
 
-const inter = Inter({
-  variable: '--font-inter',
+const dmSans = DM_Sans({
+  variable: '--font-dm-sans',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -70,7 +70,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${instrumentSans.variable}`}
+      className={`${dmSans.variable} ${jetbrainsMono.variable} ${instrumentSans.variable}`}
       suppressHydrationWarning
     >
       <body suppressHydrationWarning>

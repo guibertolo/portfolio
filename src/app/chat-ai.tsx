@@ -154,7 +154,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
       maxHeight: 'calc(100vh - 8rem)',
       background: 'var(--c-bg)',
       border: '1px solid var(--c-border)',
-      borderRadius: '16px',
+      borderRadius: 'var(--radius-lg)',
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
@@ -171,7 +171,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
             AI Assistant • Online
           </div>
         </div>
-        <button onClick={onClose} aria-label="Fechar chat" style={{ background: 'none', border: '1px solid var(--c-border)', color: 'var(--c-text-muted)', width: '28px', height: '28px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={onClose} aria-label="Fechar chat" style={{ background: 'none', border: '1px solid var(--c-border)', color: 'var(--c-text-muted)', width: '28px', height: '28px', borderRadius: 'var(--radius-xs)', cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           ✕
         </button>
       </div>
@@ -221,7 +221,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
             flex: 1,
             background: 'var(--c-bg-card)',
             border: '1px solid var(--c-border)',
-            borderRadius: '8px',
+            borderRadius: 'var(--radius-xs)',
             padding: '0.5rem 0.75rem',
             color: 'var(--c-text)',
             fontSize: '16px',
@@ -231,7 +231,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
         <button type="submit" style={{
           background: 'var(--c-accent)',
           border: 'none',
-          borderRadius: '8px',
+          borderRadius: 'var(--radius-xs)',
           padding: '0.5rem 0.875rem',
           color: 'white',
           cursor: 'pointer',

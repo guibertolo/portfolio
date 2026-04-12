@@ -72,7 +72,7 @@ export default function BlogPage() {
                 <div aria-disabled="true" style={{
                   background: 'var(--c-bg-card)',
                   border: '1px solid var(--c-border)',
-                  borderRadius: '16px',
+                  borderRadius: 'var(--radius-lg)',
                   padding: '2rem',
                   opacity: 0.5,
                   pointerEvents: 'none',
@@ -93,7 +93,7 @@ export default function BlogPage() {
                   <div style={{
                     background: 'var(--c-bg-card)',
                     border: '1px solid var(--c-border)',
-                    borderRadius: '16px',
+                    borderRadius: 'var(--radius-lg)',
                     padding: '2rem',
                     transition: 'background 0.3s, border-color 0.3s, transform 0.2s',
                   }} className="card-glass">
