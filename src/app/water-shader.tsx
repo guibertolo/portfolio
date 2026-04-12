@@ -181,6 +181,8 @@ function WaterPlane({ color1, color2, color3, mouseRef }: WaterPlaneProps) {
   const smoothMouse = useRef(new THREE.Vector2(0, 0));
   const smoothTrail = useRef(new THREE.Vector2(0, 0));
   const smoothScroll = useRef(0);
+  const tempColor = useRef(new THREE.Color());
+  const tempVec2 = useRef(new THREE.Vector2());
 
   useFrame((state, delta) => {
     // Move mesh physically through camera view based on scroll
@@ -194,20 +196,18 @@ function WaterPlane({ color1, color2, color3, mouseRef }: WaterPlaneProps) {
 
     uniforms.uTime.value = state.clock.elapsedTime;
 
-    // Update colors (in case theme changed)
-    const c1 = new THREE.Color(color1);
-    const c2 = new THREE.Color(color2);
-    const c3 = new THREE.Color(color3);
-    uniforms.uColor1.value.set(c1.r, c1.g, c1.b);
-    uniforms.uColor2.value.set(c2.r, c2.g, c2.b);
-    uniforms.uColor3.value.set(c3.r, c3.g, c3.b);
+    // Update colors (in case theme changed) — reuse ref to avoid per-frame allocations
+    const tc = tempColor.current;
+    tc.set(color1); uniforms.uColor1.value.set(tc.r, tc.g, tc.b);
+    tc.set(color2); uniforms.uColor2.value.set(tc.r, tc.g, tc.b);
+    tc.set(color3); uniforms.uColor3.value.set(tc.r, tc.g, tc.b);
 
     // Smooth mouse interpolation
     if (mouseRef.current) {
       // Convert pixel coords to NDC (-1..1)
       const nx = (mouseRef.current.x / size.width) * 2 - 1;
       const ny = -((mouseRef.current.y / size.height) * 2 - 1);
-      smoothMouse.current.lerp(new THREE.Vector2(nx, ny), 1 - Math.pow(0.05, delta));
+      smoothMouse.current.lerp(tempVec2.current.set(nx, ny), 1 - Math.pow(0.05, delta));
     }
     uniforms.uMouse.value.copy(smoothMouse.current);
 

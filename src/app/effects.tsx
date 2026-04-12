@@ -172,13 +172,13 @@ function SoundToggle() {
       }}
     >
       <span aria-hidden="true" style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '18px', height: '18px' }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M9 18V5l12-2v13" />
           <circle cx="6" cy="18" r="3" fill="currentColor" />
           <circle cx="18" cy="16" r="3" fill="currentColor" />
         </svg>
         {!on && (
-          <svg width="18" height="18" viewBox="0 0 24 24" style={{ position: 'absolute', inset: 0, margin: 'auto' }}>
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" style={{ position: 'absolute', inset: 0, margin: 'auto' }}>
             <line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         )}

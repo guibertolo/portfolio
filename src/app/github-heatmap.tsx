@@ -19,6 +19,7 @@ export default function GitHubHeatmap() {
   const [data, setData] = useState<ContributionDay[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetch('/api/github-contributions')
@@ -28,7 +29,10 @@ export default function GitHubHeatmap() {
         setTotal(d.total);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
@@ -39,7 +43,13 @@ export default function GitHubHeatmap() {
     );
   }
 
-  if (data.length === 0) return null;
+  if (error || data.length === 0) {
+    return (
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--c-text-muted)', padding: '1.5rem 0', textAlign: 'center' }}>
+        Contribuições indisponíveis no momento
+      </div>
+    );
+  }
 
   // Group by weeks (columns) — last 52 weeks
   const weeks: ContributionDay[][] = [];
@@ -65,7 +75,7 @@ export default function GitHubHeatmap() {
   const displayWeeks = weeks.slice(-52);
 
   return (
-    <div>
+    <div role="img" aria-label={`Mapa de contribuições GitHub: ${total} contribuições no último ano`}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--c-text-muted)' }}>
           {total} contribuições no último ano
@@ -105,7 +115,7 @@ export default function GitHubHeatmap() {
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem', justifyContent: 'flex-end' }}>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--c-text-muted)' }}>Menos</span>
         {LEVEL_COLORS.map((color, i) => (
-          <div key={i} style={{ width: '10px', height: '10px', borderRadius: '2px', background: color }} />
+          <div key={i} aria-hidden="true" style={{ width: '10px', height: '10px', borderRadius: '2px', background: color }} />
         ))}
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--c-text-muted)' }}>Mais</span>
       </div>

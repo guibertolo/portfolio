@@ -65,7 +65,7 @@ export default function FeatureToggles() {
         }}
         title="Pergunte sobre mim"
       >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       </button>
 
       {/* Terminal overlay */}

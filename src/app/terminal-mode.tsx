@@ -119,27 +119,29 @@ export default function TerminalMode({ onClose }: { onClose: () => void }) {
 
   return (
     <div
+      role="application"
+      aria-label="Terminal interativo"
       style={{
         position: 'fixed',
         inset: 0,
         zIndex: 100,
-        background: '#0d1117',
+        background: 'var(--c-bg)',
         display: 'flex',
         flexDirection: 'column',
-        fontFamily: "'JetBrains Mono', 'Courier New', monospace",
+        fontFamily: 'var(--font-mono)',
         fontSize: '0.85rem',
-        color: '#22c55e',
+        color: 'var(--c-accent)',
       }}
     >
       {/* Title bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', background: '#161b22', borderBottom: '1px solid #30363d' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', background: 'var(--c-bg-card)', borderBottom: '1px solid var(--c-border)' }}>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f85149', cursor: 'pointer' }} onClick={onClose} />
-          <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#d29922' }} />
-          <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#3fb950' }} />
+          <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f85149', cursor: 'pointer' }} onClick={onClose} aria-label="Fechar terminal" role="button" />
+          <span aria-hidden="true" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#d29922' }} />
+          <span aria-hidden="true" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#3fb950' }} />
         </div>
-        <span style={{ fontSize: '0.7rem', color: '#8b949e' }}>guest@bertolo -bash</span>
-        <button onClick={onClose} style={{ background: 'none', border: '1px solid #30363d', color: '#8b949e', padding: '0.25rem 0.75rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.65rem', fontFamily: 'inherit' }}>
+        <span style={{ fontSize: '0.7rem', color: 'var(--c-text-muted)' }}>guest@bertolo -bash</span>
+        <button onClick={onClose} style={{ background: 'none', border: '1px solid var(--c-border)', color: 'var(--c-text-muted)', padding: '0.25rem 0.75rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.65rem', fontFamily: 'inherit' }}>
           ESC para sair
         </button>
       </div>
@@ -150,13 +152,13 @@ export default function TerminalMode({ onClose }: { onClose: () => void }) {
       {/* Terminal body */}
       <div ref={scrollRef} style={{ flex: 1, overflow: 'auto', padding: '1rem', position: 'relative', zIndex: 2 }}>
         {lines.map((line, i) => (
-          <div key={i} style={{ color: line.type === 'input' ? '#58a6ff' : '#22c55e', marginBottom: '2px', whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>
+          <div key={i} style={{ color: line.type === 'input' ? 'var(--c-text-secondary)' : 'var(--c-accent)', marginBottom: '2px', whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>
             {line.text}
           </div>
         ))}
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <span style={{ color: '#58a6ff' }}>guest@bertolo:~$</span>
+          <span style={{ color: 'var(--c-text-secondary)' }}>guest@bertolo:~$</span>
           <input
             ref={inputRef}
             value={input}
@@ -166,13 +168,14 @@ export default function TerminalMode({ onClose }: { onClose: () => void }) {
               background: 'transparent',
               border: 'none',
               outline: 'none',
-              color: '#22c55e',
+              color: 'var(--c-accent)',
               fontFamily: 'inherit',
               fontSize: 'inherit',
-              caretColor: '#22c55e',
+              caretColor: 'var(--c-accent)',
             }}
             autoComplete="off"
             spellCheck={false}
+            aria-label="Comando do terminal"
           />
         </form>
       </div>

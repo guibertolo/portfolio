@@ -152,7 +152,7 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
             AI Assistant • Online
           </div>
         </div>
-        <button onClick={onClose} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: '#848490', width: '28px', height: '28px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={onClose} aria-label="Fechar chat" style={{ background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: '#848490', width: '28px', height: '28px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           ✕
         </button>
       </div>
@@ -207,7 +207,6 @@ export default function ChatAI({ onClose }: { onClose: () => void }) {
             color: '#fafafa',
             fontSize: '16px',
             fontFamily: 'var(--font-sans, Inter, sans-serif)',
-            outline: 'none',
           }}
         />
         <button type="submit" style={{

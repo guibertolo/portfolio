@@ -161,14 +161,14 @@ export default function Home() {
             <div className="scroll-mouse scroll-desktop"><div className="scroll-wheel" /></div>
             {/* Mobile: swipe gesture */}
             <div className="scroll-mobile">
-              <svg width="24" height="32" viewBox="0 0 24 32" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg aria-hidden="true" width="24" height="32" viewBox="0 0 24 32" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="4" y="2" width="16" height="24" rx="8" />
                 <line x1="12" y1="10" x2="12" y2="16" className="swipe-line" />
                 <path d="M9 14 L12 18 L15 14" className="swipe-arrow" />
               </svg>
             </div>
-            <svg className="scroll-chevron" width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 2 L10 8 L18 2" /></svg>
-            <svg className="scroll-chevron scroll-chevron-2" width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: '-6px' }}><path d="M2 2 L10 8 L18 2" /></svg>
+            <svg aria-hidden="true" className="scroll-chevron" width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 2 L10 8 L18 2" /></svg>
+            <svg aria-hidden="true" className="scroll-chevron scroll-chevron-2" width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: '-6px' }}><path d="M2 2 L10 8 L18 2" /></svg>
           </div>
         </div>
       </section>
@@ -203,9 +203,9 @@ export default function Home() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '3rem' }}>
           {[
-            { phrase: 'Do código à produção em horas, não semanas', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> },
-            { phrase: 'IA que executa com critério, não que gera lixo bonito', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M9 15c.83.83 2.17 1.5 3 1.5s2.17-.67 3-1.5"/></svg> },
-            { phrase: 'Produto inteiro, um desenvolvedor', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> },
+            { phrase: 'Do código à produção em horas, não semanas', icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> },
+            { phrase: 'IA que executa com critério, não que gera lixo bonito', icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M9 15c.83.83 2.17 1.5 3 1.5s2.17-.67 3-1.5"/></svg> },
+            { phrase: 'Produto inteiro, um desenvolvedor', icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> },
           ].map((item, i) => (
             <div key={item.phrase} className="reveal card-glass magnetic-card" data-delay={`${(i + 1) * 0.15}`} style={{ textAlign: 'center', padding: '1.25rem' }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.75rem' }}>{item.icon}</div>
@@ -326,19 +326,19 @@ export default function Home() {
             {
               title: 'Conversa e escopo',
               description: 'Começa com uma conversa pra entender o que você precisa. Defino escopo, prazo e entregáveis antes de escrever uma linha de código. Sem surpresas.',
-              icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>,
+              icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>,
               number: '01',
             },
             {
               title: 'Protótipo rápido',
               description: 'Em dias você já vê uma versão funcionando no ar. Valida antes de avançar. Ajustes no caminho, não no final.',
-              icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
+              icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
               number: '02',
             },
             {
               title: 'Entrega + suporte',
               description: 'Entrego o produto funcionando com deploy, SEO e performance otimizada. Suporte incluído por 30 dias após a entrega.',
-              icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
+              icon: <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
               number: '03',
             },
           ].map((step, i) => (
