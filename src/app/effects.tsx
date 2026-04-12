@@ -774,11 +774,7 @@ export default function Effects() {
     );
     document.querySelectorAll('[data-target]').forEach((el) => counterObserver.observe(el));
 
-    // ===== HIDE NAV AT FOOTER + BACK TO TOP =====
-    const floatingNav = document.querySelector<HTMLElement>('.floating-nav');
-    const footerEl = document.querySelector('footer');
-
-    // Create back-to-top button
+    // ===== BACK TO TOP =====
     const backToTop = document.createElement('button');
     backToTop.id = 'back-to-top';
     backToTop.setAttribute('aria-label', 'Voltar ao topo');
@@ -790,20 +786,27 @@ export default function Effects() {
     });
     document.body.appendChild(backToTop);
 
-    if (floatingNav && footerEl) {
+    const floatingNav = document.querySelector<HTMLElement>('.floating-nav');
+    const footerEl = document.querySelector('footer');
+    if (footerEl) {
       const footerObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
+            const isMobile = window.innerWidth <= 768;
             if (entry.isIntersecting) {
-              floatingNav.style.opacity = '0';
-              floatingNav.style.pointerEvents = 'none';
               backToTop.style.opacity = '1';
               backToTop.style.pointerEvents = 'auto';
+              if (isMobile && floatingNav) {
+                floatingNav.style.opacity = '0';
+                floatingNav.style.pointerEvents = 'none';
+              }
             } else {
-              floatingNav.style.opacity = '1';
-              floatingNav.style.pointerEvents = 'auto';
               backToTop.style.opacity = '0';
               backToTop.style.pointerEvents = 'none';
+              if (isMobile && floatingNav) {
+                floatingNav.style.opacity = '1';
+                floatingNav.style.pointerEvents = 'auto';
+              }
             }
           });
         },

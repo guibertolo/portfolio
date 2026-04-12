@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import NavTracker from './nav-tracker';
 // Effects, ShaderBackground, FeatureToggles and SmoothScroll moved to app/layout.tsx
 // so blog and case study routes inherit the time-of-day theme and shader bg.
 
@@ -413,7 +414,7 @@ export default function Home() {
       </section>
 
       {/* ===== FOOTER ===== */}
-      <footer style={{ textAlign: 'center', padding: '2rem 1.5rem 5rem', borderTop: '1px solid var(--c-border)' }}>
+      <footer style={{ textAlign: 'center', padding: '2rem 1.5rem', borderTop: '1px solid var(--c-border)' }}>
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--c-text-quaternary)', letterSpacing: '0.05em' }}>
           &copy; 2026 Guilherme Bertolo | Built with Next.js, Tailwind &amp; AI
         </p>
@@ -432,11 +433,12 @@ export default function Home() {
             {link.label}
           </a>
         ))}
-        <span style={{ width: '1px', height: '16px', background: 'var(--c-border)', flexShrink: 0, alignSelf: 'center' }} />
+        <span className="nav-separator" style={{ width: '100%', height: '1px', background: 'var(--c-border)', flexShrink: 0 }} />
         <a href="#contato" className="nav-cta" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--c-accent)', textDecoration: 'none', fontWeight: 600, letterSpacing: '0.05em' }}>
           Contato
         </a>
       </nav>
+      <NavTracker />
     </main>
   );
 }
