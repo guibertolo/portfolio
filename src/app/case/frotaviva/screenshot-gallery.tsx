@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 interface Screenshot {
@@ -14,6 +14,7 @@ interface ScreenshotGalleryProps {
 
 export function ScreenshotGallery({ screenshots }: ScreenshotGalleryProps) {
   const [active, setActive] = useState<number | null>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
 
   const close = useCallback(() => setActive(null), []);
 
@@ -23,9 +24,28 @@ export function ScreenshotGallery({ screenshots }: ScreenshotGalleryProps) {
       if (e.key === 'Escape') close();
       if (e.key === 'ArrowRight') setActive((prev) => (prev !== null && prev < screenshots.length - 1 ? prev + 1 : prev));
       if (e.key === 'ArrowLeft') setActive((prev) => (prev !== null && prev > 0 ? prev - 1 : prev));
+      if (e.key === 'Tab') {
+        const container = lightboxRef.current;
+        if (!container) return;
+        const focusable = container.querySelectorAll<HTMLElement>('button');
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.addEventListener('keydown', handler);
     document.body.style.overflow = 'hidden';
+    // Focus the close button on open
+    requestAnimationFrame(() => {
+      lightboxRef.current?.querySelector<HTMLElement>('button')?.focus();
+    });
     return () => {
       document.removeEventListener('keydown', handler);
       document.body.style.overflow = '';
@@ -70,6 +90,10 @@ export function ScreenshotGallery({ screenshots }: ScreenshotGalleryProps) {
       {/* Lightbox */}
       {active !== null && (
         <div
+          ref={lightboxRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Visualizar screenshot"
           onClick={close}
           style={{
             position: 'fixed',
@@ -152,7 +176,7 @@ export function ScreenshotGallery({ screenshots }: ScreenshotGalleryProps) {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              aria-label="Proximo"
+              aria-label="Próximo"
             >
               &#8594;
             </button>
