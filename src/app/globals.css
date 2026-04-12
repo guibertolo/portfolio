@@ -705,7 +705,7 @@ section {
   .floating-nav {
     left: 50%;
     top: auto;
-    bottom: 1rem;
+    bottom: 0.5rem;
     transform: translateX(-50%);
     flex-direction: row;
     border-radius: 9999px;
