@@ -51,7 +51,7 @@ function getTimeTheme() {
   const hour = new Date().getHours();
 
   if (hour >= 6 && hour < 12) return THEMES.manha;
-  if (hour >= 12 && hour < 22) return THEMES.tarde;
+  if (hour >= 12 && hour < 19) return THEMES.tarde;
   return THEMES.noite;
 }
 

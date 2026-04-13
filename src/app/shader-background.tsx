@@ -16,7 +16,7 @@ const THEME_COLORS: Record<string, { color1: string; color2: string; color3: str
 function getThemeLabel(): string {
   const hour = new Date().getHours();
   if (hour >= 6 && hour < 12) return 'manhã';
-  if (hour >= 12 && hour < 22) return 'tarde';
+  if (hour >= 12 && hour < 19) return 'tarde';
   return 'noite';
 }
 
