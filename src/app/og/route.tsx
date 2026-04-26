@@ -40,7 +40,7 @@ export async function GET() {
             height: '100%',
             display: 'flex',
             background:
-              'radial-gradient(ellipse at 50% 30%, rgba(59,130,246,0.15) 0%, transparent 60%)',
+              'radial-gradient(ellipse at 50% 30%, rgba(59,130,246,0.18) 0%, transparent 60%)',
           }}
         />
 
@@ -50,51 +50,99 @@ export async function GET() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '16px',
+            gap: '8px',
             position: 'relative',
+            padding: '0 64px',
           }}
         >
+          {/* Mono tagline (typing effect from hero) */}
           <div
             style={{
               fontSize: '20px',
               color: '#3b82f6',
-              letterSpacing: '0.2em',
+              letterSpacing: '0.25em',
               textTransform: 'uppercase',
+              marginBottom: '24px',
             }}
           >
-            {'< Software Engineer & AI Engineer />'}
+            building products, not templates
           </div>
+
+          {/* Name (mirrors hero: white "Guilherme" + gradient "Bertolo") */}
           <div
             style={{
-              fontSize: '72px',
-              fontWeight: 700,
-              color: '#fafafa',
-              letterSpacing: '-0.02em',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              lineHeight: 1.05,
             }}
           >
-            Guilherme
+            <div
+              style={{
+                fontSize: '108px',
+                fontWeight: 700,
+                color: '#fafafa',
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Guilherme
+            </div>
+            <div
+              style={{
+                fontSize: '108px',
+                fontWeight: 700,
+                background: 'linear-gradient(135deg, #3b82f6, #a855f7, #ec4899)',
+                backgroundClip: 'text',
+                color: 'transparent',
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Bertolo
+            </div>
           </div>
+
+          {/* PT subtitle (hero phrase) */}
           <div
             style={{
-              fontSize: '72px',
-              fontWeight: 700,
-              background: 'linear-gradient(135deg, #3b82f6, #a855f7, #ec4899)',
-              backgroundClip: 'text',
-              color: 'transparent',
-              letterSpacing: '-0.02em',
+              fontSize: '26px',
+              color: '#d4d4d8',
+              marginTop: '32px',
+              textAlign: 'center',
+              lineHeight: 1.4,
+              maxWidth: '900px',
+              display: 'flex',
             }}
           >
-            Bertolo
+            Eu projeto, codifico e coloco no ar.&nbsp;
+            <span style={{ color: '#fafafa', fontWeight: 600 }}>Sozinho, se precisar.</span>
           </div>
+
+          {/* PT mono sub-sub (hero) */}
           <div
             style={{
               fontSize: '18px',
-              color: '#a1a1aa',
-              marginTop: '8px',
+              color: '#71717a',
+              marginTop: '12px',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
             }}
           >
-            Next.js • TypeScript • AI Orchestration • Rust
+            Sites · Sistemas · Apps · Automação com IA
           </div>
+        </div>
+
+        {/* Footer URL */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '32px',
+            fontSize: '16px',
+            color: '#52525b',
+            letterSpacing: '0.1em',
+            display: 'flex',
+          }}
+        >
+          guilhermebertolo.com.br
         </div>
       </div>
     ),

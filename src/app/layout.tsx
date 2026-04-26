@@ -34,34 +34,73 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Guilherme Bertolo | AI Engineer & Full-stack Developer',
+  metadataBase: new URL('https://guilhermebertolo.com.br'),
+  title: 'Guilherme Bertolo · building products, not templates',
   description:
-    'Portfolio de Guilherme Bertolo - Engenheiro de Software, Analista de Processos e entusiasta de Inteligência Artificial. Projetos com Next.js, TypeScript, Rust e AI Orchestration.',
+    'Building products, not templates. Eu projeto, codifico e coloco no ar. Sozinho, se precisar. Sites, sistemas, apps e automação com IA.',
+  applicationName: 'Guilherme Bertolo',
+  authors: [{ name: 'Guilherme Bertolo', url: 'https://guilhermebertolo.com.br' }],
+  creator: 'Guilherme Bertolo',
+  publisher: 'Guilherme Bertolo',
   keywords: [
     'Guilherme Bertolo',
-    'Software Engineer',
-    'AI',
+    'desenvolvedor full-stack',
+    'engenheiro de IA',
     'Next.js',
     'TypeScript',
     'React',
-    'Portfolio',
+    'Supabase',
+    'Rust',
+    'Tauri',
+    'AI Orchestration',
+    'SaaS',
+    'FrotaViva',
+    'São Bernardo do Campo',
   ],
-  authors: [{ name: 'Guilherme Bertolo' }],
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
-    title: 'Guilherme Bertolo | AI Engineer & Full-stack Developer',
+    title: 'Guilherme Bertolo · building products, not templates',
     description:
-      'Portfolio de Guilherme Bertolo - Engenheiro de Software e AI Engineer. Projetos com Next.js, TypeScript, Rust e AI Orchestration.',
+      'Eu projeto, codifico e coloco no ar. Sozinho, se precisar. Sites, sistemas, apps e automação com IA.',
     type: 'website',
     locale: 'pt_BR',
     url: 'https://guilhermebertolo.com.br',
-    images: [{ url: '/og', width: 1200, height: 630, alt: 'Guilherme Bertolo - AI Engineer & Full-stack Developer' }],
+    siteName: 'Guilherme Bertolo',
+    images: [
+      {
+        url: '/og?v=2',
+        width: 1200,
+        height: 630,
+        alt: 'Guilherme Bertolo · building products, not templates',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Guilherme Bertolo | AI Engineer & Full-stack Developer',
-    description: 'Portfolio de Guilherme Bertolo - Engenheiro de Software e AI Engineer.',
-    images: ['/og'],
+    title: 'Guilherme Bertolo · building products, not templates',
+    description:
+      'Eu projeto, codifico e coloco no ar. Sozinho, se precisar. Sites, sistemas, apps e automação com IA.',
+    images: ['/og?v=2'],
+    creator: '@guibertolo',
   },
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/apple-icon', sizes: '180x180', type: 'image/png' }],
+  },
+  manifest: '/manifest.webmanifest',
 };
 
 export default function RootLayout({

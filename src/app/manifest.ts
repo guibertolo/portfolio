@@ -2,12 +2,17 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Guilherme Bertolo — AI Engineer',
-    short_name: 'GB Portfolio',
-    description: 'Portfolio de Guilherme Bertolo — AI Engineer & Full-stack Developer',
+    name: 'Guilherme Bertolo',
+    short_name: 'GB',
+    description:
+      'Building products, not templates. Eu projeto, codifico e coloco no ar.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0a0a0a',
-    theme_color: '#3b82f6',
+    theme_color: '#0a0a0a',
+    icons: [
+      { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
+      { src: '/apple-icon', sizes: '180x180', type: 'image/png' },
+    ],
   };
 }
