@@ -448,8 +448,11 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
   }
 
   async function marcarEnviado() {
-    if (!nome.trim() || !sexo) {
-      setErro('Preenche nome e sexo antes');
+    const faltando: string[] = [];
+    if (!nome.trim()) faltando.push('nome');
+    if (!sexo) faltando.push('sexo');
+    if (faltando.length > 0) {
+      setErro(`Preenche antes: ${faltando.join(' e ')}`);
       return;
     }
     await patch({
@@ -592,20 +595,16 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
           type="button"
           onClick={marcarEnviado}
           className="btn-primary"
-          disabled={salvando || !nome.trim() || !sexo || lead.status === 'enviado'}
+          disabled={salvando}
           style={{
-            cursor:
-              salvando || !nome.trim() || !sexo || lead.status === 'enviado'
-                ? 'not-allowed'
-                : 'pointer',
-            opacity:
-              salvando || !nome.trim() || !sexo || lead.status === 'enviado' ? 0.5 : 1,
+            cursor: salvando ? 'not-allowed' : 'pointer',
+            opacity: salvando ? 0.5 : 1,
           }}
         >
           {salvando
             ? 'Salvando...'
             : lead.status === 'enviado'
-              ? '✓ Já marcado como enviado'
+              ? 'Reenviar (atualizar dados)'
               : 'Marcar como enviado'}
         </button>
       </div>
@@ -615,25 +614,26 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
         <div style={{ borderTop: '1px solid var(--c-border)', paddingTop: '1rem' }}>
           <Label>Mudar status</Label>
           <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-            {(['respondeu', 'em_conversa', 'negou', 'frio'] as const).map((s) => (
+            {(['pendente', 'respondeu', 'em_conversa', 'negou', 'frio'] as const).map((s) => (
               <button
                 key={s}
                 type="button"
                 onClick={() => patch({ status: s })}
-                disabled={salvando}
+                disabled={salvando || lead.status === s}
                 style={{
                   padding: '0.4rem 0.85rem',
-                  background: 'transparent',
+                  background: lead.status === s ? `color-mix(in srgb, ${STATUS_COR[s]} 18%, transparent)` : 'transparent',
                   border: `1px solid ${STATUS_COR[s]}`,
                   borderRadius: '9999px',
                   color: STATUS_COR[s],
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.7rem',
-                  cursor: salvando ? 'not-allowed' : 'pointer',
+                  cursor: salvando || lead.status === s ? 'not-allowed' : 'pointer',
                   opacity: salvando ? 0.5 : 1,
+                  fontWeight: lead.status === s ? 600 : 400,
                 }}
               >
-                {STATUS_LABEL[s]}
+                {lead.status === s ? `✓ ${STATUS_LABEL[s]}` : STATUS_LABEL[s]}
               </button>
             ))}
           </div>

@@ -8,35 +8,11 @@
     "temSite": null
   },
   {
-    "slug": "joao-silva-j5nnnd",
-    "tratamento": "Dr.",
-    "nome": "João Silva",
-    "areaAtuacao": "Direito de Família",
-    "cidade": "São Paulo, SP",
-    "temSite": "nao"
-  },
-  {
     "slug": "gislaine-42ztgc",
     "tratamento": "Dra.",
     "nome": "Gislaine Rodrigues",
     "areaAtuacao": "Direito de Família",
     "cidade": "São Bernardo do Campo, SP",
     "temSite": "sim"
-  },
-  {
-    "slug": "roberto-de-jesus-ecd19c",
-    "tratamento": "Dr.",
-    "nome": "Roberto de Jesus",
-    "areaAtuacao": "Direito Imobiliário",
-    "cidade": "São Paulo, SP",
-    "temSite": "sim"
-  },
-  {
-    "slug": "emanoel-juvencio-b83827",
-    "tratamento": "Dr.",
-    "nome": "Emanoel Juvencio",
-    "areaAtuacao": "Direito Empresarial",
-    "cidade": "São Paulo, SP",
-    "temSite": "nao"
   }
 ]
