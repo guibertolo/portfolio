@@ -126,10 +126,14 @@ export async function POST(req: Request) {
     gitError = err.stderr?.toString() || err.message || 'erro desconhecido';
   }
 
+  // urlLocal pega o origin da request (porta dinamica)
+  const reqUrl = new URL(req.url);
+  const urlLocal = `${reqUrl.origin}/proposta/${slug}`;
+
   return NextResponse.json({
     slug,
     url: `https://guilhermebertolo.com.br/proposta/${slug}`,
-    urlLocal: `http://localhost:3002/proposta/${slug}`,
+    urlLocal,
     gitOk,
     gitError,
     nomeCompleto: `${input.tratamento} ${input.nome}`.trim(),
