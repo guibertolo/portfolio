@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { PropostaForm } from './form';
 
 export const dynamic = 'force-dynamic';
@@ -23,11 +24,25 @@ export default function AdminPropostaPage() {
         style={{
           maxWidth: '720px',
           margin: '0 auto',
-          padding: '4rem 1.5rem 4rem',
+          padding: '3rem 1.5rem 4rem',
           position: 'relative',
           zIndex: 1,
         }}
       >
+        <Link
+          href="/admin"
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.7rem',
+            color: 'var(--c-text-muted)',
+            textDecoration: 'none',
+            display: 'inline-block',
+            marginBottom: '1.5rem',
+          }}
+        >
+          ← Hub
+        </Link>
+
         <p
           style={{
             fontFamily: 'var(--font-mono)',

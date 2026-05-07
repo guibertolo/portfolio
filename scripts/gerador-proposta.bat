@@ -1,11 +1,11 @@
 @echo off
-title Gerador de Proposta - Guilherme Bertolo
+title Gerador de Campanha - Guilherme Bertolo
 color 0B
 
 echo.
 echo ============================================================
-echo   GERADOR DE PROPOSTA
-echo   Guilherme Bertolo
+echo   GERADOR DE CAMPANHA
+echo   Mensagens + Propostas
 echo ============================================================
 echo.
 
@@ -63,7 +63,7 @@ goto :WAIT_LOOP
 :OPEN_BROWSER
 echo.
 echo [...] Abrindo gerador no navegador...
-start http://localhost:3030/admin/proposta
+start http://localhost:3030/admin
 
 echo.
 echo ============================================================
