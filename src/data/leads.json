@@ -30,5 +30,13 @@
     "areaAtuacao": "Direito Imobiliário",
     "cidade": "São Paulo, SP",
     "temSite": "sim"
+  },
+  {
+    "slug": "emanoel-juvencio-b83827",
+    "tratamento": "Dr.",
+    "nome": "Emanoel Juvencio",
+    "areaAtuacao": "Direito Empresarial",
+    "cidade": "São Paulo, SP",
+    "temSite": "nao"
   }
 ]
