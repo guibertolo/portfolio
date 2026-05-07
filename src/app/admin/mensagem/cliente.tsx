@@ -452,7 +452,6 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
       setErro('Preenche nome e sexo antes');
       return;
     }
-    await copiar();
     await patch({
       nome: nome.trim(),
       sexo,
@@ -582,7 +581,7 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
         <button
           type="button"
           onClick={copiar}
-          className="btn-ghost-sm"
+          className="btn-ghost"
           disabled={!mensagem}
           style={{ cursor: mensagem ? 'pointer' : 'not-allowed', opacity: mensagem ? 1 : 0.5 }}
         >
@@ -593,10 +592,21 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
           type="button"
           onClick={marcarEnviado}
           className="btn-primary"
-          disabled={salvando || !nome.trim() || !sexo}
-          style={{ cursor: salvando || !nome.trim() || !sexo ? 'not-allowed' : 'pointer', opacity: salvando || !nome.trim() || !sexo ? 0.5 : 1 }}
+          disabled={salvando || !nome.trim() || !sexo || lead.status === 'enviado'}
+          style={{
+            cursor:
+              salvando || !nome.trim() || !sexo || lead.status === 'enviado'
+                ? 'not-allowed'
+                : 'pointer',
+            opacity:
+              salvando || !nome.trim() || !sexo || lead.status === 'enviado' ? 0.5 : 1,
+          }}
         >
-          {salvando ? 'Salvando...' : 'Copiar e marcar como enviado'}
+          {salvando
+            ? 'Salvando...'
+            : lead.status === 'enviado'
+              ? '✓ Já marcado como enviado'
+              : 'Marcar como enviado'}
         </button>
       </div>
 
