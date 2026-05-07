@@ -3,12 +3,15 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import leads from '../../../data/leads.json';
 
+type TemSite = 'sim' | 'nao' | null;
+
 interface Lead {
   slug: string;
   tratamento: string;
   nome: string | null;
   areaAtuacao: string | null;
   cidade: string | null;
+  temSite?: TemSite;
 }
 
 const LEADS = leads as Lead[];
@@ -60,6 +63,117 @@ export default async function PropostaPage({
   );
   const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}&utm_source=proposta&utm_lead=${lead.slug}`;
 
+  // Variantes de copy baseadas em se o lead ja tem site ou nao
+  const temSite: TemSite = lead.temSite ?? null;
+
+  const heroHeadline =
+    temSite === 'sim' ? (
+      <>
+        seu site hoje custa <span className="gradient-text">clientes</span>.
+        <br />
+        Vamos consertar em 30 dias.
+      </>
+    ) : temSite === 'nao' ? (
+      <>
+        sem site profissional, você está <span className="gradient-text">invisível</span> pra quem busca no Google.
+        <br />
+        Vamos resolver em 30 dias.
+      </>
+    ) : (
+      <>
+        seu próximo cliente vai pesquisar você no Google.
+        <br />
+        <span className="gradient-text">O que ele vai encontrar?</span>
+      </>
+    );
+
+  const diagnostico =
+    temSite === 'sim'
+      ? {
+          titulo: (
+            <>
+              O que segura sua captação <span className="gradient-text">não é o anúncio</span>. É o site que recebe o lead.
+            </>
+          ),
+          cards: [
+            {
+              titulo: 'Site lento espanta',
+              texto:
+                'Cliente abre no celular no semáforo. Se demora 4 segundos, ele já fechou. O Lighthouse mede isso. A maioria dos sites de escritório fica abaixo de 60.',
+            },
+            {
+              titulo: 'Genérico não converte',
+              texto:
+                'Template de massa transmite "qualquer um pode fazer isso". Lead investiga o site antes de marcar a primeira reunião e desiste sem você saber.',
+            },
+            {
+              titulo: 'Sem SEO local, ninguém acha',
+              texto:
+                'Quem busca "advogado [sua área] [sua cidade]" no Google só vê quem otimizou pra isso. Sem schema markup e dados estruturados, você fica invisível.',
+            },
+          ],
+        }
+      : temSite === 'nao'
+        ? {
+            titulo: (
+              <>
+                Sem site, você <span className="gradient-text">não existe</span> pra quem busca por você no Google.
+              </>
+            ),
+            cards: [
+              {
+                titulo: 'Você não aparece',
+                texto:
+                  'Cliente busca "advogado de família São Paulo" e vê 10 resultados. Se você não tem site, não está em nenhum deles. Indicação chega via Google primeiro, depois liga.',
+              },
+              {
+                titulo: 'Indicação não escala',
+                texto:
+                  'Boca-a-boca tem teto. Indicação que não tem onde validar você (site, perfil, reviews) cai pela metade. Site é o que transforma indicação em fluxo contínuo.',
+              },
+              {
+                titulo: 'Concorrente já está lá',
+                texto:
+                  'Enquanto você não tem site, advogado da mesma área e cidade está captando os clientes que poderiam ser seus. Quanto mais espera, mais caro fica entrar.',
+              },
+            ],
+          }
+        : {
+            titulo: (
+              <>
+                Em 2025, advogado sem presença digital <span className="gradient-text">perde cliente</span> todo dia.
+              </>
+            ),
+            cards: [
+              {
+                titulo: 'Cliente decide no Google',
+                texto:
+                  '80% das pessoas que precisam de advogado pesquisam online antes de marcar. Se você não está no resultado, mesmo com indicação, perde a primeira impressão.',
+              },
+              {
+                titulo: 'Site é confiança',
+                texto:
+                  'Antes de te ligar, o lead investiga seu site. Sem site (ou com site ruim), confiança quebra. Ele vai pro próximo da lista sem você saber.',
+              },
+              {
+                titulo: 'Mercado tá ocupado',
+                texto:
+                  'Outros advogados da sua área já entenderam isso. Quem chega depois, paga mais caro pra furar a fila ou aceita pegar as sobras.',
+              },
+            ],
+          };
+
+  const faqPerguntaSite =
+    temSite === 'nao'
+      ? {
+          q: 'Nunca tive site. Vale a pena começar agora?',
+          a: 'Vale, e quanto antes melhor. Site bem feito gera resultado em 60-90 dias (SEO local + Google Maps + tráfego orgânico). Você economiza energia que ia gastar tentando captar 100% por indicação. O custo de NÃO ter um site profissional é maior que o de ter, em qualquer cenário de carreira em crescimento.',
+        }
+      : {
+          q: 'Eu já tenho site, preciso trocar?',
+          a: 'Depende. Se ele converte o tráfego que você paga, não. Se não, sim. Posso fazer um diagnóstico gratuito (Lighthouse + SEO local + análise mobile) em 5 minutos. Me chama no WhatsApp, manda o link, eu te devolvo o report.',
+        };
+
   return (
     <div style={{ color: 'var(--c-text)', minHeight: '100vh', position: 'relative' }}>
       <div className="bg-continuity" />
@@ -79,9 +193,7 @@ export default async function PropostaPage({
         <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.25rem, 6vw, 3.75rem)', fontWeight: 600, lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
           {headlineNome}
           <br />
-          seu site hoje custa <span className="gradient-text">clientes</span>.
-          <br />
-          Vamos consertar em 30 dias.
+          {heroHeadline}
         </h1>
 
         <p style={{ color: 'var(--c-text-secondary)', fontSize: '1.15rem', lineHeight: 1.7, maxWidth: '640px', marginBottom: '2.5rem' }}>
@@ -158,24 +270,11 @@ export default async function PropostaPage({
       <section style={{ maxWidth: '900px', margin: '0 auto', padding: '3rem 1.5rem', position: 'relative', zIndex: 1 }}>
         <p className="section-label">01. Diagnóstico</p>
         <h2 className="section-title" style={{ marginBottom: '2rem' }}>
-          O que segura sua captação <span className="gradient-text">não é o anúncio</span>. É o site que recebe o lead.
+          {diagnostico.titulo}
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
-          {[
-            {
-              titulo: 'Site lento espanta',
-              texto: 'Cliente abre no celular no semáforo. Se demora 4 segundos, ele já fechou. O Lighthouse mede isso. A maioria dos sites de escritório fica abaixo de 60.',
-            },
-            {
-              titulo: 'Genérico não converte',
-              texto: 'Template de massa transmite "qualquer um pode fazer isso". Lead investiga o site antes de marcar a primeira reunião e desiste sem você saber.',
-            },
-            {
-              titulo: 'Sem SEO local, ninguém acha',
-              texto: 'Quem busca "advogado [sua área] [sua cidade]" no Google só vê quem otimizou pra isso. Sem schema markup e dados estruturados, você fica invisível.',
-            },
-          ].map((d) => (
+          {diagnostico.cards.map((d) => (
             <div key={d.titulo} className="card-glass">
               <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--c-accent)' }}>
                 {d.titulo}
@@ -197,7 +296,7 @@ export default async function PropostaPage({
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
           {[
-            { t: 'Stack moderna', d: 'Next.js + Tailwind + Vercel. Mesma tecnologia que Netflix, Notion e TikTok usam.' },
+            { t: 'Stack moderna', d: 'Construído na mesma tecnologia que Netflix, Notion e TikTok usam. Não é WordPress nem template.' },
             { t: 'Lighthouse 95+', d: 'Performance, acessibilidade, SEO, boas práticas. Mensurável e auditável.' },
             { t: 'SEO local', d: 'Schema markup completo (LocalBusiness, LegalService, Attorney). Aparece em buscas locais.' },
             { t: 'Mobile-first', d: 'Cliente abre no celular. Site é desenhado pro celular primeiro, desktop depois.' },
@@ -221,7 +320,7 @@ export default async function PropostaPage({
       {/* ============== PROMO GALERIA DE ESTILOS ============== */}
       <section style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 1.5rem', position: 'relative', zIndex: 1 }}>
         <Link
-          href="/proposta/estilos"
+          href={`/proposta/estilos?from=${lead.slug}`}
           style={{
             display: 'block',
             background: 'var(--c-bg-card)',
@@ -349,7 +448,7 @@ export default async function PropostaPage({
               R$ 150/mês
             </p>
             <p style={{ fontSize: '0.8rem', color: 'var(--c-text-secondary)', marginTop: '0.25rem' }}>
-              Hospedagem premium (Vercel) + manutenção + admin + 2 alterações pequenas/mês
+              Hospedagem premium + manutenção + admin + 2 alterações pequenas/mês
             </p>
           </div>
         </div>
@@ -417,15 +516,15 @@ export default async function PropostaPage({
               a: (
                 <>
                   Cada projeto começa com uma direção estética escolhida no briefing. Tenho seis direções autorais base pra advocacia (sóbria clássica, moderna minimalista, boutique premium, acolhedora, técnica, refinada feminina), e a partir da que você escolher, customizamos paleta, tipografia e layout pra ficar único pro seu escritório.{' '}
-                  <Link href="/proposta/estilos" style={{ color: 'var(--c-accent)', textDecoration: 'underline', fontWeight: 500 }}>
+                  <Link href={`/proposta/estilos?from=${lead.slug}`} style={{ color: 'var(--c-accent)', textDecoration: 'underline', fontWeight: 500 }}>
                     Ver as 6 direções estéticas →
                   </Link>
                 </>
               ),
             },
             {
-              q: 'Eu já tenho site, preciso trocar?',
-              a: 'Depende. Se ele converte o tráfego que você paga, não. Se não, sim. Posso fazer um diagnóstico gratuito (Lighthouse + SEO local + análise mobile) em 5 minutos. Me chama no WhatsApp, manda o link, eu te devolvo o report.',
+              q: faqPerguntaSite.q,
+              a: faqPerguntaSite.a,
             },
             {
               q: 'Vou ficar igual à Dra. Gislaine ou a outros clientes seus?',
@@ -475,7 +574,7 @@ export default async function PropostaPage({
             Sem agência, sem 5 níveis de aprovação, sem gerente de projeto pra repassar suas mensagens. Você fala diretamente comigo, em qualquer hora útil.
           </p>
           <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.95rem', lineHeight: 1.7 }}>
-            Já entreguei o site da Dra. Gislaine (live, em produção). Construo com Next.js + Tailwind + Vercel, mesmo padrão de empresas como Notion e TikTok. Foco em performance e captação real, não em efeito visual sem propósito.
+            Já entreguei o site da Dra. Gislaine (live, em produção). Construo com tecnologia moderna, mesmo padrão de empresas como Notion e TikTok. Foco em performance e captação real, não em efeito visual sem propósito.
           </p>
         </div>
       </section>

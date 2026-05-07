@@ -4,20 +4,23 @@
     "tratamento": "Doutor(a)",
     "nome": null,
     "areaAtuacao": null,
-    "cidade": null
+    "cidade": null,
+    "temSite": null
   },
   {
     "slug": "joao-silva-j5nnnd",
     "tratamento": "Dr.",
     "nome": "João Silva",
     "areaAtuacao": "Direito de Família",
-    "cidade": "São Paulo, SP"
+    "cidade": "São Paulo, SP",
+    "temSite": "nao"
   },
   {
     "slug": "gislaine-42ztgc",
     "tratamento": "Dra.",
     "nome": "Gislaine Rodrigues",
     "areaAtuacao": "Direito de Família",
-    "cidade": "São Bernardo do Campo, SP"
+    "cidade": "São Bernardo do Campo, SP",
+    "temSite": "sim"
   }
 ]

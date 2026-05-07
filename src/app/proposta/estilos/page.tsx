@@ -9,7 +9,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function EstilosPage() {
+export default async function EstilosPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const { from } = await searchParams;
+  const backHref = from ? `/proposta/${from}` : '/';
+  const backLabel = from ? '← Voltar pra sua proposta' : '← guilhermebertolo.com.br';
+
   return (
     <div style={{ color: 'var(--c-text)', minHeight: '100vh', position: 'relative' }}>
       <div className="bg-continuity" />
@@ -18,18 +26,19 @@ export default function EstilosPage() {
       {/* HERO */}
       <section style={{ maxWidth: '900px', margin: '0 auto', padding: '4rem 1.5rem 3rem', position: 'relative', zIndex: 1 }}>
         <Link
-          href="/"
+          href={backHref}
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '0.7rem',
-            color: 'var(--c-text-muted)',
+            color: from ? 'var(--c-accent)' : 'var(--c-text-muted)',
             textDecoration: 'none',
             display: 'inline-block',
             marginBottom: '2rem',
             letterSpacing: '0.1em',
+            fontWeight: from ? 600 : 400,
           }}
         >
-          ← guilhermebertolo.com.br
+          {backLabel}
         </Link>
 
         <p
@@ -95,7 +104,7 @@ export default function EstilosPage() {
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--c-text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.75rem' }}>
           Identidade única, garantida em contrato
         </p>
-        <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.9rem', lineHeight: 1.7, maxWidth: '640px' }}>
+        <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.9rem', lineHeight: 1.7, maxWidth: '640px', marginBottom: from ? '2rem' : 0 }}>
           A Dra. Gislaine Rodrigues escolheu uma direção e o resultado é único dela. Você pode ver{' '}
           <a
             href="https://advogadagislainerodrigues.com.br"
@@ -107,6 +116,16 @@ export default function EstilosPage() {
           </a>
           . O seu vai ter outra paleta, outra tipografia, outra atmosfera. O processo é o mesmo, a entrega é diferente.
         </p>
+
+        {from && (
+          <Link
+            href={backHref}
+            className="btn-ghost"
+            style={{ marginTop: '1rem' }}
+          >
+            ← Voltar pra sua proposta
+          </Link>
+        )}
       </footer>
     </div>
   );
