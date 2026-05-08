@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 interface Resultado {
   slug: string;
@@ -30,8 +31,14 @@ const AREAS_SUGERIDAS = [
 ];
 
 export function PropostaForm() {
-  const [nome, setNome] = useState('');
-  const [tratamento, setTratamento] = useState<'Dr.' | 'Dra.' | 'Doutor(a)'>('Dr.');
+  const params = useSearchParams();
+
+  // Pre-preenche do query string (vindo do /admin/mensagem)
+  const initialNome = params.get('nome') || '';
+  const initialTratamento = (params.get('tratamento') as 'Dr.' | 'Dra.' | 'Doutor(a)' | null) || 'Dr.';
+
+  const [nome, setNome] = useState(initialNome);
+  const [tratamento, setTratamento] = useState<'Dr.' | 'Dra.' | 'Doutor(a)'>(initialTratamento);
   const [areaAtuacao, setAreaAtuacao] = useState('');
   const [cidade, setCidade] = useState('');
   const [temSite, setTemSite] = useState<'sim' | 'nao' | 'desconhecido'>('desconhecido');

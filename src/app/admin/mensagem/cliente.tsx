@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import { TEMPLATES, getTemplateById } from '@/data/templates-mensagem';
 
 interface Lead {
@@ -699,6 +700,34 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
               ? 'Reenviar (atualizar dados)'
               : 'Marcar como enviado'}
         </button>
+
+        {/* Gerar proposta com dados pre-preenchidos */}
+        <Link
+          href={`/admin/proposta?nome=${encodeURIComponent(nome.trim())}&tratamento=${encodeURIComponent(tratamento)}`}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            padding: '0.55rem 1.1rem',
+            background: 'transparent',
+            border: '1px solid var(--c-accent)',
+            borderRadius: '9999px',
+            color: 'var(--c-accent)',
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.8rem',
+            fontWeight: 600,
+            textDecoration: 'none',
+            cursor: nome.trim() ? 'pointer' : 'not-allowed',
+            opacity: nome.trim() ? 1 : 0.4,
+            pointerEvents: nome.trim() ? 'auto' : 'none',
+          }}
+          title={
+            !nome.trim()
+              ? 'Preencha o nome antes de gerar proposta'
+              : 'Abrir gerador de proposta com nome e tratamento ja preenchidos'
+          }
+        >
+          → Gerar proposta
+        </Link>
 
         {/* Limpar lead (discreto, direita) */}
         {(lead.nome || lead.sexo || lead.tratamento || lead.status !== 'pendente') && (

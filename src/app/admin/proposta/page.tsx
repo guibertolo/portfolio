@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { PropostaForm } from './form';
@@ -82,7 +83,9 @@ export default function AdminPropostaPage() {
           push, e em ~90s a proposta tá no ar com URL pública pra você mandar pro advogado.
         </p>
 
-        <PropostaForm />
+        <Suspense fallback={<div style={{ color: 'var(--c-text-muted)' }}>Carregando form...</div>}>
+          <PropostaForm />
+        </Suspense>
 
         <details style={{ marginTop: '3rem', fontSize: '0.85rem', color: 'var(--c-text-muted)' }}>
           <summary style={{ cursor: 'pointer', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
