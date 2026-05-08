@@ -580,7 +580,7 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
       )}
 
       {/* Acoes */}
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <button
           type="button"
           onClick={copiar}
@@ -607,6 +607,60 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
               ? 'Reenviar (atualizar dados)'
               : 'Marcar como enviado'}
         </button>
+
+        {/* Limpar lead (discreto, direita) */}
+        {(lead.nome || lead.sexo || lead.tratamento || lead.status !== 'pendente') && (
+          <button
+            type="button"
+            onClick={async () => {
+              if (
+                !confirm(
+                  `Limpar dados deste lead?\n\nVai apagar nome, sexo, tratamento, template e datas.\nO lead volta pra "pendente".\nO telefone (${lead.telefone}) permanece.`,
+                )
+              )
+                return;
+              await patch({
+                nome: null,
+                sexo: null,
+                tratamento: null,
+                templateUsado: null,
+                status: 'pendente',
+                dataEnvio: null,
+                dataResposta: null,
+                observacao: null,
+              });
+              setNome('');
+              setSexo(null);
+              setTratamento('Dr.');
+              setTemplateId('a');
+            }}
+            disabled={salvando}
+            title="Limpar dados deste lead e voltar pra pendente"
+            style={{
+              marginLeft: 'auto',
+              padding: '0.4rem 0.7rem',
+              background: 'transparent',
+              border: '1px solid var(--c-border)',
+              borderRadius: 'var(--radius-sm)',
+              color: 'var(--c-text-muted)',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.7rem',
+              cursor: salvando ? 'not-allowed' : 'pointer',
+              opacity: salvando ? 0.5 : 1,
+              transition: 'color 0.2s ease, border-color 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#f87171';
+              e.currentTarget.style.borderColor = 'rgba(248, 113, 113, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--c-text-muted)';
+              e.currentTarget.style.borderColor = 'var(--c-border)';
+            }}
+          >
+            🗑 limpar
+          </button>
+        )}
       </div>
 
       {/* Mudar status (so se já enviou) */}
@@ -649,45 +703,6 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
         </p>
       )}
 
-      {/* Limpar lead — apaga dados preenchidos e volta pra pendente */}
-      {(lead.nome || lead.sexo || lead.tratamento || lead.status !== 'pendente') && (
-        <div style={{ borderTop: '1px solid var(--c-border)', paddingTop: '1rem', marginTop: '0.5rem' }}>
-          <button
-            type="button"
-            onClick={async () => {
-              if (!confirm(`Limpar todos os dados deste lead?\n\nVai apagar: nome, sexo, tratamento, template usado e datas.\nO lead volta pra "pendente".\n\nO telefone (${lead.telefone}) e a região continuam intactos.`)) return;
-              await patch({
-                nome: null,
-                sexo: null,
-                tratamento: null,
-                templateUsado: null,
-                status: 'pendente',
-                dataEnvio: null,
-                dataResposta: null,
-                observacao: null,
-              });
-              setNome('');
-              setSexo(null);
-              setTratamento('Dr.');
-              setTemplateId('a');
-            }}
-            disabled={salvando}
-            style={{
-              padding: '0.45rem 0.85rem',
-              background: 'transparent',
-              border: '1px solid rgba(248, 113, 113, 0.4)',
-              borderRadius: '9999px',
-              color: '#f87171',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.7rem',
-              cursor: salvando ? 'not-allowed' : 'pointer',
-              opacity: salvando ? 0.5 : 1,
-            }}
-          >
-            🗑 Limpar dados deste lead
-          </button>
-        </div>
-      )}
     </div>
   );
 }
