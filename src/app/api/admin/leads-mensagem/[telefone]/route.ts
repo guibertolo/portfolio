@@ -15,6 +15,8 @@ interface PatchInput {
   templateUsado?: string | null;
   observacao?: string | null;
   promovidoPara?: string | null;
+  dataEnvio?: string | null;
+  dataResposta?: string | null;
 }
 
 export async function PATCH(
