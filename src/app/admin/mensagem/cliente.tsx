@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { TEMPLATES, getTemplateById } from '@/data/templates-mensagem';
 
 interface Lead {
@@ -397,8 +397,13 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
   const [copiado, setCopiado] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
-  // Auto-detect tratamento por sexo
+  // Toggle M/F: clicar no ja selecionado deseleciona
   function ajustarSexo(s: 'M' | 'F') {
+    if (sexo === s) {
+      setSexo(null);
+      setTratamento('Doutor(a)');
+      return;
+    }
     setSexo(s);
     if (tratamento === 'Doutor(a)' || (s === 'F' && tratamento === 'Dr.') || (s === 'M' && tratamento === 'Dra.')) {
       setTratamento(s === 'F' ? 'Dra.' : 'Dr.');
@@ -447,15 +452,6 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
     }
   }
 
-  async function salvarDados() {
-    await patch({
-      nome: nome.trim() || null,
-      sexo,
-      tratamento,
-      templateUsado: templateId,
-    });
-  }
-
   async function marcarEnviado() {
     const faltando: string[] = [];
     if (!nome.trim()) faltando.push('nome');
@@ -473,12 +469,70 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
     });
   }
 
-  // Detecta mudancas pendentes (nao salvas)
-  const hasMudancas =
-    (nome.trim() || null) !== (lead.nome || null) ||
-    sexo !== lead.sexo ||
-    (lead.tratamento && tratamento !== lead.tratamento) ||
-    (lead.templateUsado && templateId !== lead.templateUsado);
+  // Autosave com debounce de 1s
+  const [autosave, setAutosave] = useState<'idle' | 'aguardando' | 'salvando' | 'salvo' | 'erro'>(
+    'idle',
+  );
+  const skipFirst = useRef(true);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (skipFirst.current) {
+      skipFirst.current = false;
+      return;
+    }
+
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+
+    // Detecta se houve mudanca em relacao ao lead persistido
+    const mudou =
+      (nome.trim() || null) !== (lead.nome || null) ||
+      sexo !== lead.sexo ||
+      (tratamento !== (lead.tratamento || 'Dr.')) ||
+      (templateId !== (lead.templateUsado || 'a'));
+
+    if (!mudou) {
+      setAutosave('idle');
+      return;
+    }
+
+    setAutosave('aguardando');
+
+    debounceRef.current = setTimeout(() => {
+      void (async () => {
+        setAutosave('salvando');
+        try {
+          const res = await fetch(
+            `/api/admin/leads-mensagem/${encodeURIComponent(lead.telefone)}`,
+            {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                nome: nome.trim() || null,
+                sexo,
+                tratamento,
+                templateUsado: templateId,
+              }),
+            },
+          );
+          if (res.ok) {
+            setAutosave('salvo');
+            onUpdate();
+            setTimeout(() => setAutosave('idle'), 1500);
+          } else {
+            setAutosave('erro');
+          }
+        } catch {
+          setAutosave('erro');
+        }
+      })();
+    }, 1000);
+
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nome, sexo, tratamento, templateId]);
 
   return (
     <div
@@ -595,30 +649,30 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
         </div>
       )}
 
-      {/* Acoes */}
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-        <button
-          type="button"
-          onClick={salvarDados}
-          disabled={salvando || !hasMudancas}
+      {/* Indicador de autosave */}
+      {autosave !== 'idle' && (
+        <p
           style={{
-            padding: '0.55rem 1rem',
-            background: hasMudancas
-              ? 'color-mix(in srgb, var(--c-success) 18%, transparent)'
-              : 'transparent',
-            border: `1px solid ${hasMudancas ? 'var(--c-success)' : 'var(--c-border)'}`,
-            borderRadius: '9999px',
-            color: hasMudancas ? 'var(--c-success)' : 'var(--c-text-muted)',
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.8rem',
-            fontWeight: hasMudancas ? 600 : 400,
-            cursor: salvando || !hasMudancas ? 'not-allowed' : 'pointer',
-            opacity: salvando ? 0.5 : 1,
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.7rem',
+            color:
+              autosave === 'erro'
+                ? '#f87171'
+                : autosave === 'salvo'
+                  ? 'var(--c-success)'
+                  : 'var(--c-text-muted)',
+            margin: 0,
           }}
         >
-          {hasMudancas ? '💾 Salvar dados' : '✓ Sem mudanças'}
-        </button>
+          {autosave === 'aguardando' && '⏳ digitando...'}
+          {autosave === 'salvando' && '💾 salvando...'}
+          {autosave === 'salvo' && '✓ salvo automaticamente'}
+          {autosave === 'erro' && '⚠ falha ao salvar — tenta editar de novo'}
+        </p>
+      )}
 
+      {/* Acoes */}
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <button
           type="button"
           onClick={copiar}
