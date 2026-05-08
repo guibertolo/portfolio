@@ -447,6 +447,15 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
     }
   }
 
+  async function salvarDados() {
+    await patch({
+      nome: nome.trim() || null,
+      sexo,
+      tratamento,
+      templateUsado: templateId,
+    });
+  }
+
   async function marcarEnviado() {
     const faltando: string[] = [];
     if (!nome.trim()) faltando.push('nome');
@@ -463,6 +472,13 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
       status: 'enviado',
     });
   }
+
+  // Detecta mudancas pendentes (nao salvas)
+  const hasMudancas =
+    (nome.trim() || null) !== (lead.nome || null) ||
+    sexo !== lead.sexo ||
+    (lead.tratamento && tratamento !== lead.tratamento) ||
+    (lead.templateUsado && templateId !== lead.templateUsado);
 
   return (
     <div
@@ -581,6 +597,28 @@ function PainelDetalhe({ lead, onUpdate }: { lead: Lead; onUpdate: () => void })
 
       {/* Acoes */}
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        <button
+          type="button"
+          onClick={salvarDados}
+          disabled={salvando || !hasMudancas}
+          style={{
+            padding: '0.55rem 1rem',
+            background: hasMudancas
+              ? 'color-mix(in srgb, var(--c-success) 18%, transparent)'
+              : 'transparent',
+            border: `1px solid ${hasMudancas ? 'var(--c-success)' : 'var(--c-border)'}`,
+            borderRadius: '9999px',
+            color: hasMudancas ? 'var(--c-success)' : 'var(--c-text-muted)',
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.8rem',
+            fontWeight: hasMudancas ? 600 : 400,
+            cursor: salvando || !hasMudancas ? 'not-allowed' : 'pointer',
+            opacity: salvando ? 0.5 : 1,
+          }}
+        >
+          {hasMudancas ? '💾 Salvar dados' : '✓ Sem mudanças'}
+        </button>
+
         <button
           type="button"
           onClick={copiar}
