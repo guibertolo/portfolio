@@ -526,67 +526,38 @@ section {
 /* Contact cards */
 .contact-card:hover { transform: translateY(-4px); }
 
-/* Scroll indicator */
-.scroll-mouse {
-  width: 22px;
-  height: 36px;
-  border: 2px solid var(--c-text-muted);
-  border-radius: 12px;
-  position: relative;
-  transition: border-color 0.3s;
+/* Scroll indicator — traço caligráfico desenhado à mão (substitui o mousezinho genérico) */
+.scroll-draw { color: var(--c-accent); }
+
+.scroll-draw .scroll-draw-body {
+  stroke-dasharray: 100;
+  animation: scrollDrawBody 3.4s ease-in-out infinite;
+}
+.scroll-draw .scroll-draw-tip {
+  stroke-dasharray: 100;
+  animation: scrollDrawTip 3.4s ease-in-out infinite;
 }
 
-.scroll-indicator:hover .scroll-mouse { border-color: var(--c-accent); }
-
-.scroll-wheel {
-  width: 3px;
-  height: 8px;
-  background: var(--c-accent);
-  border-radius: 2px;
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scrollWheel 2s ease-in-out infinite;
+@keyframes scrollDrawBody {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  8% { opacity: 1; }
+  52% { stroke-dashoffset: 0; opacity: 1; }
+  80% { stroke-dashoffset: 0; opacity: 1; }
+  93% { opacity: 0; }
+  100% { stroke-dashoffset: 100; opacity: 0; }
+}
+@keyframes scrollDrawTip {
+  0%, 46% { stroke-dashoffset: 100; opacity: 0; }
+  50% { opacity: 1; }
+  62% { stroke-dashoffset: 0; opacity: 1; }
+  80% { stroke-dashoffset: 0; opacity: 1; }
+  93% { opacity: 0; }
+  100% { stroke-dashoffset: 100; opacity: 0; }
 }
 
-@keyframes scrollWheel {
-  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  50% { opacity: 0.3; transform: translateX(-50%) translateY(12px); }
-  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
-/* Desktop/mobile scroll indicator toggle */
-.scroll-desktop { display: block; }
-.scroll-mobile { display: none; }
-
+/* Esconde o indicador no mobile (gesto natural) */
 @media (hover: none), (max-width: 768px) {
-  .scroll-desktop { display: none !important; }
-  .scroll-mobile { display: block !important; }
-}
-
-/* Swipe gesture animation */
-.swipe-line {
-  animation: swipeDown 2s ease-in-out infinite;
-}
-
-.swipe-arrow {
-  animation: swipeDown 2s ease-in-out infinite;
-}
-
-@keyframes swipeDown {
-  0% { opacity: 1; transform: translateY(0); }
-  50% { opacity: 0.3; transform: translateY(6px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.scroll-chevron { opacity: 0.4; animation: scrollChevron 2s ease-in-out infinite; }
-.scroll-chevron-2 { animation-delay: 0.15s; opacity: 0.2; }
-
-@keyframes scrollChevron {
-  0% { opacity: 0.1; transform: translateY(0); }
-  50% { opacity: 0.6; transform: translateY(4px); }
-  100% { opacity: 0.1; transform: translateY(0); }
+  .scroll-draw { display: none !important; }
 }
 
 /* Experience timeline */

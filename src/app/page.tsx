@@ -159,19 +159,20 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="hero-fade hero-fade-5" style={{ position: 'absolute', bottom: '-8rem', left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
-            {/* Desktop: mouse icon */}
-            <div className="scroll-mouse scroll-desktop"><div className="scroll-wheel" /></div>
-            {/* Mobile: swipe gesture */}
-            <div className="scroll-mobile">
-              <svg aria-hidden="true" width="24" height="32" viewBox="0 0 24 32" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="4" y="2" width="16" height="24" rx="8" />
-                <line x1="12" y1="10" x2="12" y2="16" className="swipe-line" />
-                <path d="M9 14 L12 18 L15 14" className="swipe-arrow" />
-              </svg>
-            </div>
-            <svg aria-hidden="true" className="scroll-chevron" width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 2 L10 8 L18 2" /></svg>
-            <svg aria-hidden="true" className="scroll-chevron scroll-chevron-2" width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="var(--c-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: '-6px' }}><path d="M2 2 L10 8 L18 2" /></svg>
+          <div className="hero-fade hero-fade-5" style={{ position: 'absolute', bottom: '-8rem', left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
+            {/* Indicador de scroll: traço caligráfico desenhado à mão (substitui o mousezinho de template) */}
+            <svg className="scroll-draw" aria-hidden="true" width="46" height="64" viewBox="0 0 64 88" fill="none">
+              <defs>
+                <filter id="scroll-rough" x="-30%" y="-30%" width="160%" height="160%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="5" result="n" />
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="2" />
+                </filter>
+              </defs>
+              <g filter="url(#scroll-rough)" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+                <path className="scroll-draw-body" d="M 31 10 C 29 28, 33 44, 31 60" pathLength={100} />
+                <path className="scroll-draw-tip" d="M 22 52 L 31 62 L 40 52" pathLength={100} />
+              </g>
+            </svg>
           </div>
         </div>
       </section>
