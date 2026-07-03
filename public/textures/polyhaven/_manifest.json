@@ -1,0 +1,128 @@
+[
+  {
+    "asset": "forest_floor",
+    "files": [
+      {
+        "tag": "diff",
+        "fname": "forest_floor_diff_1k.jpg",
+        "kb": 1299
+      },
+      {
+        "tag": "nor",
+        "fname": "forest_floor_nor_1k.jpg",
+        "kb": 1348
+      },
+      {
+        "tag": "rough",
+        "fname": "forest_floor_rough_1k.jpg",
+        "kb": 719
+      }
+    ],
+    "totalKB": 3366
+  },
+  {
+    "asset": "bark_brown_02",
+    "files": [
+      {
+        "tag": "diff",
+        "fname": "bark_brown_02_diff_1k.jpg",
+        "kb": 644
+      },
+      {
+        "tag": "nor",
+        "fname": "bark_brown_02_nor_1k.jpg",
+        "kb": 992
+      },
+      {
+        "tag": "rough",
+        "fname": "bark_brown_02_rough_1k.jpg",
+        "kb": 330
+      }
+    ],
+    "totalKB": 1966
+  },
+  {
+    "asset": "aerial_rocks_02",
+    "files": [
+      {
+        "tag": "diff",
+        "fname": "aerial_rocks_02_diff_1k.jpg",
+        "kb": 768
+      },
+      {
+        "tag": "nor",
+        "fname": "aerial_rocks_02_nor_1k.jpg",
+        "kb": 1150
+      },
+      {
+        "tag": "rough",
+        "fname": "aerial_rocks_02_rough_1k.jpg",
+        "kb": 373
+      }
+    ],
+    "totalKB": 2291
+  },
+  {
+    "asset": "brown_planks_03",
+    "files": [
+      {
+        "tag": "diff",
+        "fname": "brown_planks_03_diff_1k.jpg",
+        "kb": 557
+      },
+      {
+        "tag": "nor",
+        "fname": "brown_planks_03_nor_1k.jpg",
+        "kb": 505
+      },
+      {
+        "tag": "rough",
+        "fname": "brown_planks_03_rough_1k.jpg",
+        "kb": 217
+      }
+    ],
+    "totalKB": 1279
+  },
+  {
+    "asset": "concrete_floor_01",
+    "files": [
+      {
+        "tag": "diff",
+        "fname": "concrete_floor_01_diff_1k.jpg",
+        "kb": 738
+      },
+      {
+        "tag": "nor",
+        "fname": "concrete_floor_01_nor_1k.jpg",
+        "kb": 889
+      },
+      {
+        "tag": "rough",
+        "fname": "concrete_floor_01_rough_1k.jpg",
+        "kb": 346
+      }
+    ],
+    "totalKB": 1973
+  },
+  {
+    "asset": "metal_plate",
+    "files": [
+      {
+        "tag": "diff",
+        "fname": "metal_plate_diff_1k.jpg",
+        "kb": 676
+      },
+      {
+        "tag": "nor",
+        "fname": "metal_plate_nor_1k.jpg",
+        "kb": 752
+      },
+      {
+        "tag": "rough",
+        "fname": "metal_plate_rough_1k.jpg",
+        "kb": 757
+      }
+    ],
+    "totalKB": 2185
+  }
+]
